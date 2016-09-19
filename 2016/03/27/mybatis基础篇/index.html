@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mybatis基础篇 | 不合格的壞人 - BLACK_LXF个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.Mybatis框架介绍mybatis是一个持久层的框架，是apache下的顶级项目。Mybatis托管在：https://github.com/mybatis/mybatis-3/releases，下图是mybatis持久层框架和后台数据库交互的过程。
+2.mybatis-config.xml文件详解这个可以看就mybatis框架的基础配置文件。也是后续和spring整合的桥梁。它内部的节点主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis基础篇">
+<meta property="og:url" content="http://yoursite.com/2016/03/27/mybatis基础篇/index.html">
+<meta property="og:site_name" content="不合格的壞人">
+<meta property="og:description" content="1.Mybatis框架介绍mybatis是一个持久层的框架，是apache下的顶级项目。Mybatis托管在：https://github.com/mybatis/mybatis-3/releases，下图是mybatis持久层框架和后台数据库交互的过程。
+2.mybatis-config.xml文件详解这个可以看就mybatis框架的基础配置文件。也是后续和spring整合的桥梁。它内部的节点主">
+<meta property="og:image" content="http://yoursite.com/../../images/mybatis_01.png">
+<meta property="og:updated_time" content="2016-03-31T10:21:33.342Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mybatis基础篇">
+<meta name="twitter:description" content="1.Mybatis框架介绍mybatis是一个持久层的框架，是apache下的顶级项目。Mybatis托管在：https://github.com/mybatis/mybatis-3/releases，下图是mybatis持久层框架和后台数据库交互的过程。
+2.mybatis-config.xml文件详解这个可以看就mybatis框架的基础配置文件。也是后续和spring整合的桥梁。它内部的节点主">
+<meta name="twitter:image" content="http://yoursite.com/../../images/mybatis_01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
+  
+
+  <!-- favicons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/css/images/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/css/images/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/css/images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/css/images/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/css/images/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/css/images/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/css/images/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/css/images/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/css/images/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/css/images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/css/images/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/css/images/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/css/images/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/css/images/manifest.json">
+  <link rel="mask-icon" href="/css/images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/css/images/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="msapplication-TileImage" content="/css/images/mstile-144x144.png">
+  <meta name="msapplication-config" content="/css/images/browserconfig.xml">
+  <meta name="theme-color" content="#3B74AC">
+  <!-- end of icons -->
+  <link href="http://fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="/css/duoshuo.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/css/style.css">
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">不合格的壞人</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">机会只会留给有准备的人</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon" style="margin-left: 13px;"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+		<a class="nav-icon" href="http://weibo.com/u/3223244320" title="微博" target="_blank">&#61834;</a>
+		<a class="nav-icon" href="http://www.renren.com/894007766" title="人人" target="_blank">&#61835;</a>
+		<a class="nav-icon" href="http://user.qzone.qq.com/673236963" title="QQ空间" target="_blank">&#61910;</a>
+		<a class="nav-icon" href="http://mashable.com/category/facebook/" title="Facebook" target="_blank">&#62000;</a>
+		<a class="nav-icon" href="https://twitter.com/" title="twitter" target="_blank">&#61593;</a>
+		<a class="nav-icon" href="http://www.linkedin.com/" title="LinkedIn" target="_blank">&#61665;</a>
+		<a class="nav-icon" href="https://github.com/lixiaofei1990101/" title="GitHub" target="_blank">&#61595;</a>
+		<a class="nav-icon" href="https://plus.google.com/" title="Google+" target="_blank">&#61653;</a>
+        
+          <a id="nav-rss-link" class="nav-icon" style="font-size: 22px; width: 22px; height: 22px; padding: 20px 5px;" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" style="font-size: 19px; width: 19px; height: 19px; padding: 20px 5px;" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mybatis基础篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mybatis基础篇
+    </h1>
+  
+
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/03/27/mybatis基础篇/" class="article-date">
+  <time datetime="2016-03-26T16:39:48.000Z" itemprop="datePublished">2016-3-27 周日  00:39</time>
+</a>
+    
+  </div>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+      	
+        <h2 id="1-Mybatis框架介绍"><a href="#1-Mybatis框架介绍" class="headerlink" title="1.Mybatis框架介绍"></a>1.Mybatis框架介绍</h2><p>mybatis是一个持久层的框架，是apache下的顶级项目。<br>Mybatis托管在：<a href="https://github.com/mybatis/mybatis-3/releases" title="mybatis-github" target="_blank" rel="external">https://github.com/mybatis/mybatis-3/releases</a>，下图是mybatis持久层框架和后台数据库交互的过程。<br><img src="../../images/mybatis_01.png" alt="mybatis_01.png"></p>
+<h2 id="2-mybatis-config-xml文件详解"><a href="#2-mybatis-config-xml文件详解" class="headerlink" title="2.mybatis-config.xml文件详解"></a>2.mybatis-config.xml文件详解</h2><p>这个可以看就mybatis框架的基础配置文件。也是后续和spring整合的桥梁。它内部的节点主要也就下面这样的一种结构。<br>注意点：<br>mybatis在加载文件的时候properties属性将会被优先获取，所以我们在给properties文件配置键值的时候一定要注意它的特殊性，不然在我们mappers的mapper.xml文件中如果和这里冲突了，那么mybatis获取的值将会获取到properties中的。<a id="more"></a><br>properties（属性）<br>settings（全局配置参数）<br>typeAliases（类型别名）<br>typeHandlers（类型处理器）<br>objectFactory（对象工厂）<br>plugins（插件）<br>environments（环境集合属性对象）<br>environment（环境子属性对象）<br>transactionManager（事务管理）<br>dataSource（数据源）<br>mappers（映射器）</p>
+<h3 id="2-1-properties节点"><a href="#2-1-properties节点" class="headerlink" title="2.1 properties节点"></a>2.1 properties节点</h3><p>一般是用来加载classpath路径下面的比如说db.properties文件的.例：  </p>
+<pre><code>&lt;properties resource=&quot;db.properties&quot;&gt;&lt;/properties&gt;
+</code></pre><h3 id="2-2-全局参数配置setting节点"><a href="#2-2-全局参数配置setting节点" class="headerlink" title="2.2 全局参数配置setting节点"></a>2.2 全局参数配置setting节点</h3><pre><code>&lt;settings&gt;
+    &lt;!-- 打开延迟加载 的开关 --&gt;
+    &lt;setting name=&quot;lazyLoadingEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;!-- 将积极加载改为消极加载即按需要加载 --&gt;
+    &lt;setting name=&quot;aggressiveLazyLoading&quot; value=&quot;false&quot;/&gt;
+    &lt;!-- 开启二级缓存 --&gt;
+    &lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;
+    &lt;!-- 设置但JDBC类型为空时,某些驱动程序 要指定值,default:OTHER，插入空值时不需要指定类型 --&gt;
+    &lt;setting name=&quot;jdbcTypeForNull&quot; value=&quot;NULL&quot;/&gt;
+&lt;/settings&gt;
+</code></pre><h3 id="2-3-typeAliases类别名的定义"><a href="#2-3-typeAliases类别名的定义" class="headerlink" title="2.3 typeAliases类别名的定义"></a>2.3 typeAliases类别名的定义</h3><p>其实在我们的mybatis框架当中，已经给我们定义了一些简单的类型。<br>别名    映射的类型<br>_byte     byte<br>_long     long<br>_short     short<br>_int     int<br>_integer     int<br>_double     double<br>_float     float<br>_boolean     boolean<br>string     String<br>byte     Byte<br>long     Long<br>short     Short<br>int     Integer<br>integer     Integer<br>double     Double<br>float     Float<br>boolean     Boolean<br>date     Date<br>decimal     BigDecimal<br>bigdecimal     BigDecimal<br>上面这些都是mybatis自带的一些简单的数据类型，但是做项目的时候，我们一般情况下返回的往往是对象（POJO）,<br>或者是对象的集合（List<pojo>）,在这种情况下，我们有两种方式来起别名：</pojo></p>
+<pre><code>&lt;typeAliases&gt;
+    这是单个别名的定义，其中的type表示的是类路径，alias表示的是别名
+    &lt;typeAlias type=&quot;com.lixf.tag.entity.Link&quot; alias=&quot;Link&quot;/&gt;    
+    第二中是批量的别名定义，这种情况下mybatis会扫描定义包下面所有的实体，类的别    名就是实体的类名
+    &lt;package name=&quot;com.lixf.tag.entity&quot;/&gt;
+&lt;/typeAliases&gt;
+</code></pre><h3 id="2-4-environments数据库和事物连接节点"><a href="#2-4-environments数据库和事物连接节点" class="headerlink" title="2.4 environments数据库和事物连接节点"></a>2.4 environments数据库和事物连接节点</h3><pre><code>&lt;!-- 和spring整合后 environments配置将废除--&gt;
+&lt;environments default=&quot;development&quot;&gt;
+    &lt;environment id=&quot;development&quot;&gt;
+        &lt;!-- 使用jdbc事务管理，事务控制由mybatis--&gt;
+        &lt;transactionManager type=&quot;JDBC&quot; /&gt;
+        &lt;!-- 数据库连接池，由mybatis管理--&gt;
+        &lt;dataSource type=&quot;POOLED&quot;&gt;
+            &lt;property name=&quot;driver&quot; value=&quot;${jdbc.driver}&quot; /&gt;
+            &lt;property name=&quot;url&quot; value=&quot;${jdbc.url}&quot; /&gt;
+            &lt;property name=&quot;username&quot; value=&quot;${jdbc.username}&quot; /&gt;
+            &lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot; /&gt;
+        &lt;/dataSource&gt;
+    &lt;/environment&gt;
+&lt;/environments&gt;
+</code></pre><h3 id="2-5-mappers节点"><a href="#2-5-mappers节点" class="headerlink" title="2.5 mappers节点"></a>2.5 mappers节点</h3><p>Mappers节点主要是用来加载mapper.xml文件的，同样的和别名的定义一样，它也有多种的加载方式.</p>
+<h4 id="2-5-1-Mybatis加载mapper-xml文件"><a href="#2-5-1-Mybatis加载mapper-xml文件" class="headerlink" title="2.5.1 Mybatis加载mapper.xml文件"></a>2.5.1 Mybatis加载mapper.xml文件</h4><pre><code>&lt;mappers&gt;
+    1、通过resource方法一次加载一个映射文件
+    &lt;!-- &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt; --&gt;
+    2、通过mapper接口加载单个 映射文件遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录 中上边规范的前提是：使用的是mapper代理方法
+    &lt;mapper class=&quot;cn.itcast.mybatis.mapper.UserMapper&quot;/&gt;
+    3、批量加载mapper指定mapper接口的包名，mybatis自动扫描包下边所有mapper接口进行加载遵循一些规范：需要将mapper接口类名和mapper.xml映射文件名称保持一致，且在一个目录中上边规范的前提是：使用的是mapper代理方法
+    &lt;package name=&quot;cn.itcast.mybatis.mapper&quot;/&gt;
+&lt;/mappers&gt;
+</code></pre><h4 id="2-5-2-Spring整合myabtis后加载mapper-xml文件"><a href="#2-5-2-Spring整合myabtis后加载mapper-xml文件" class="headerlink" title="2.5.2 Spring整合myabtis后加载mapper.xml文件"></a>2.5.2 Spring整合myabtis后加载mapper.xml文件</h4><pre><code>&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+    &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot; /&gt;
+    1、spring加载myabtis基础配置文件
+    &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot; /&gt;
+    2、批量加载mapper.xml文件
+    &lt;property name=&quot;mapperLocations&quot;&gt;
+        &lt;list&gt;
+            &lt;value&gt;classpath:mapper/*.xml&lt;/value&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre><h3 id="2-6-plugins插件节点"><a href="#2-6-plugins插件节点" class="headerlink" title="2.6 plugins插件节点"></a>2.6 plugins插件节点</h3><pre><code>&lt;plugins&gt;
+    &lt;plugin interceptor=&quot;com.github.pagehelper.PageHelper&quot;&gt;
+    &lt;property name=&quot;dialect&quot; value=&quot;oracle&quot;/&gt;
+    该参数默认为false 
+    设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 
+    和startPage中的pageNum效果一样
+    &lt;property name=&quot;offsetAsPageNum&quot; value=&quot;true&quot;/&gt;
+    该参数默认为false 
+    设置为true时，使用RowBounds分页会进行count查询 
+    &lt;property name=&quot;rowBoundsWithCount&quot; value=&quot;true&quot;/&gt;
+    设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果
+    相当于没有执行分页查询，但是返回结果仍然是Page类型）
+    &lt;property name=&quot;pageSizeZero&quot; value=&quot;true&quot;/&gt;
+    3.3.0版本可用 - 分页参数合理化，默认false禁用
+    启用合理化时，如果pageNum&lt;1会查询第一页，如果pageNum&gt;pages会查询最后一页 
+    禁用合理化时，如果pageNum&lt;1或pageNum&gt;pages会返回空数据
+    &lt;property name=&quot;reasonable&quot; value=&quot;true&quot;/&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre><h2 id="3-Mybatis持久层的开发"><a href="#3-Mybatis持久层的开发" class="headerlink" title="3.Mybatis持久层的开发"></a>3.Mybatis持久层的开发</h2><p>通过上面，我们知道了mybatis就是一个持久层的框架，但mybatis仍然属于一种半自动的框架，在实际的业务中还是需要我们去编写和业务层交互的dao层，那么dao层又是怎么去开发的呢？总的来说一般是分成了两种方式：1、原始dao层的开发。2、mapper代理的方式。下面就具体分析下两种方式的区别。</p>
+<h3 id="3-1-原始dao层的开发"><a href="#3-1-原始dao层的开发" class="headerlink" title="3.1 原始dao层的开发"></a>3.1 原始dao层的开发</h3><p>原始的dao层开发，程序员需要自己编写dao的接口和实现类，需要向dao实现类中注入SqlSessionFactory，<br>在方法体内通过SqlSessionFactory创建SqlSession.然后调用SqlSession的方法和数据库交互.<br>1.接口定义</p>
+<pre><code>public interface UserDao {
+    public User findUserById(int id) throws Exception;
+}
+</code></pre><p>2.实现接口</p>
+<pre><code>public class UserDaoImpl implements UserDao {
+    private SqlSessionFactory sqlSessionFactory;
+        //构造方法注入SqlSessionFactory
+        public UserDaoImpl(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
+    @Override
+    public User findUserById(int id) throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        User user = sqlSession.selectOne(&quot;test.findUserById&quot;, id);
+        sqlSession.close();
+        return user;
+    }
+}
+</code></pre><p>3.编写测试类</p>
+<pre><code>public class UserDaoImplTest {
+    private SqlSessionFactory sqlSessionFactory;
+    // 此方法是在执行testFindUserById之前执行
+    @Before
+    public void setUp() throws Exception {
+        // 加载mybatis基础配置文件
+        String resource = &quot;mybatis-config.xml&quot;;
+        // 得到配置文件流
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        // 创建会话工厂，传入mybatis的配置文件信息
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    }
+    @Test
+    public void testFindUserById() throws Exception {
+        // 创建UserDao的对象，调用构造方法，传递SqlSessionFactory对象
+        UserDao userDao = new UserDaoImpl(sqlSessionFactory);
+        // 调用UserDao的方法
+        User user = userDao.findUserById(1);
+        System.out.println(user);
+    }
+}
+</code></pre><p>到这里，整个的流程基本就算是完成了，可以看到相对来说，采用dao层的原始开发方法还是有很多的弊端的。<br>1、sqlSession.selectOne（“statementId”,Object）,我们在调用sqlSession的方法的时候对statementId进行了硬编码。<br>2、在调用方法的时候我们传入的参数是哥Object对象，这样的话，在编译的时候不会出现报错的情况，但是也许我们传入的参数并不是我们业务所需要的参数。<br>注：如果一定要采用这种原始的方法话，在和spring整合以后建议是优先编写一个工具类，去实现SqlSession的接口，或者继承SqlSessionTemplate复写父类的方法，然后去指定传入的参数类型也可以。</p>
+<h3 id="3-2-Mapper代理的方式"><a href="#3-2-Mapper代理的方式" class="headerlink" title="3.2 Mapper代理的方式"></a>3.2 Mapper代理的方式</h3><p>这应该也算是mybatis比较亮的一个地方把，采用这种方式，mybatis会自动生成接口的实现类。但必须遵循一定的开发规范。<br>1、在我们开发的mapper.xml中的namespace的值必须是mapper的接口地址,例:</p>
+<pre><code>&lt;mapper namespace=&quot;com.lixf.test.TestDao&quot;&gt;
+</code></pre><p>2、接口中的定义方法名必须和mapper.xml的statementId保持一致<br>3、接口中的传入参数类型（比如说查询中的查询条件参数类型）必须和mapper.xml的parameterType保持一致。<br>4、同样的接口中的返回数据类型也必须和mapper.xml中的resultType保持一致<br>以上这四点是采用mapper代理方式开发持久层必须遵循的开发规范。</p>
+<h2 id="4-mapper-xml分析"><a href="#4-mapper-xml分析" class="headerlink" title="4.mapper.xml分析"></a>4.mapper.xml分析</h2><p>这部分主要是用来存放持久层和DB进行交互的sql语句 部分，也是mybatis的关键部分。至于sql语句的学习，这里就不多写了，这部分主要分为：<br>Mapper.xml各个节点的分析。<br>xml的增删改查基本语句输入和输出参数的类型。<br>搞基映射resultMap返回类型的分析，和查询对应关系（复杂）。<br>动态的sql语句（复杂）。</p>
+<h3 id="4-1-Mapper-xml节点总览（常用）"><a href="#4-1-Mapper-xml节点总览（常用）" class="headerlink" title="4.1 Mapper.xml节点总览（常用）"></a>4.1 Mapper.xml节点总览（常用）</h3><h4 id="4-1-1-数据库的新增操作（parameterType-新增输入参数，第二个和第三个参数配合使用用于生成自动主键的）例"><a href="#4-1-1-数据库的新增操作（parameterType-新增输入参数，第二个和第三个参数配合使用用于生成自动主键的）例" class="headerlink" title="4.1.1 数据库的新增操作（parameterType:新增输入参数，第二个和第三个参数配合使用用于生成自动主键的）例:"></a>4.1.1 数据库的新增操作（parameterType:新增输入参数，第二个和第三个参数配合使用用于生成自动主键的）例:</h4><pre><code>1、&lt;insert id=&quot;&quot; parameterType=&quot;&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;&lt;/insert&gt;
+2、自增长生成key插入
+&lt;insert id=&quot;insertBlog&quot; parameterType=&quot;Blog&quot;&gt;
+    &lt;selectKey keyProperty=&quot;studentID&quot; resultType=&quot;String&quot; order=&quot;BEFORE&quot;&gt;
+        select nextval(&apos;id&apos;)
+    &lt;/selectKey&gt;
+    insert into Blog
+    (id,title,author_id)
+    values
+    (#{id},#{title},#{authorId})
+&lt;/insert&gt;
+</code></pre><h4 id="4-1-2-数据库的删除操作（parameterType-删除输入参数）例"><a href="#4-1-2-数据库的删除操作（parameterType-删除输入参数）例" class="headerlink" title="4.1.2 数据库的删除操作（parameterType:删除输入参数）例:"></a>4.1.2 数据库的删除操作（parameterType:删除输入参数）例:</h4><pre><code>&lt;delete id=&quot;deleteUser&quot; parameterType=&quot;int&quot;&gt;
+    delete from user where id=#{id}
+&lt;/delete&gt; 
+</code></pre><h4 id="4-1-3数据库的修改操作（parameterType-修改输入参数）例"><a href="#4-1-3数据库的修改操作（parameterType-修改输入参数）例" class="headerlink" title="4.1.3数据库的修改操作（parameterType:修改输入参数）例:"></a>4.1.3数据库的修改操作（parameterType:修改输入参数）例:</h4><pre><code>&lt;update id=&quot;updateUser&quot; parameterType=&quot;User&quot; &gt;
+    Update user set
+    userName=#{userName},userAge=#{userAge},userAddress=#{userAddress}     where id=#{id}
+&lt;/update&gt;
+</code></pre><h4 id="4-1-4-数据库的查询操作（parameterType-查询的输入参数，resultType查询返回的结果类型）例"><a href="#4-1-4-数据库的查询操作（parameterType-查询的输入参数，resultType查询返回的结果类型）例" class="headerlink" title="4.1.4 数据库的查询操作（parameterType:查询的输入参数，resultType查询返回的结果类型）例:"></a>4.1.4 数据库的查询操作（parameterType:查询的输入参数，resultType查询返回的结果类型）例:</h4><pre><code>&lt;select id=&quot;selectUsersByName&quot; parameterType=&quot;string&quot; resultType=&quot;User&quot;&gt;
+    select * from user where user.userName = #{userName}
+&lt;/select&gt;
+</code></pre><h4 id="4-1-5-主要是用来定义sql片段的，增加sql的复用性（id是sql片段的唯一标识）例"><a href="#4-1-5-主要是用来定义sql片段的，增加sql的复用性（id是sql片段的唯一标识）例" class="headerlink" title="4.1.5 主要是用来定义sql片段的，增加sql的复用性（id是sql片段的唯一标识）例:"></a>4.1.5 主要是用来定义sql片段的，增加sql的复用性（id是sql片段的唯一标识）例:</h4><pre><code>&lt;sql id=&quot;blog_column&quot;&gt;id,title,author_id as authorId&lt;/sql&gt; 
+&lt;select id=&quot;selectBlog_as_map&quot; parameterType=&quot;int&quot; resultType=&quot;hashmap&quot;&gt;  
+   select &lt;include refid=&quot;blog_column&quot;/&gt; from Blog where id = #{id}  
+&lt;/select&gt;
+</code></pre><h4 id="4-1-6-resultMap主要用来描述如何从数据库结果集中来加载你的对象-例"><a href="#4-1-6-resultMap主要用来描述如何从数据库结果集中来加载你的对象-例" class="headerlink" title="4.1.6 resultMap主要用来描述如何从数据库结果集中来加载你的对象 例:"></a>4.1.6 resultMap主要用来描述如何从数据库结果集中来加载你的对象 例:</h4><pre><code>&lt;resultMap type=&quot;cn.itcast.mybatis.po.Orders&quot; id=&quot;OrdersUserResultMap&quot;&gt;
+    &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
+    &lt;result column=&quot;user_id&quot; property=&quot;userId&quot;/&gt;
+    &lt;result column=&quot;number&quot; property=&quot;number&quot;/&gt;
+    &lt;result column=&quot;createtime&quot; property=&quot;createtime&quot;/&gt;
+    &lt;result column=&quot;note&quot; property=&quot;note&quot;/&gt;
+&lt;/resultMap&gt;
+</code></pre><h3 id="4-2-高级映射resultMap"><a href="#4-2-高级映射resultMap" class="headerlink" title="4.2 高级映射resultMap"></a>4.2 高级映射resultMap</h3><p>在resultMap节点下面主要有以下几个节点:Id,Result,Association,Collection。</p>
+<h4 id="4-2-1-一对一的关系（一个订单一个用户）"><a href="#4-2-1-一对一的关系（一个订单一个用户）" class="headerlink" title="4.2.1 一对一的关系（一个订单一个用户）"></a>4.2.1 一对一的关系（一个订单一个用户）</h4><pre><code>Type：resultMap对应的实体，id作为查询Result返回类型的值
+&lt;resultMap type=&quot;cn.itcast.mybatis.po.Orders&quot; id=&quot;OrdersUserResultMap&quot;&gt;
+    Id：查询列表中的唯一表示，如果是多少列组成唯一表示，则需要配置多个id。
+    Property：实体对象中对应的属性值。
+    Column：数据库的字段值。
+    &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
+    &lt;result column=&quot;user_id&quot; property=&quot;userId&quot;/&gt;
+    &lt;result column=&quot;number&quot; property=&quot;number&quot;/&gt;
+    &lt;result column=&quot;createtime&quot; property=&quot;createtime&quot;/&gt;
+    &lt;result column=&quot;note&quot; property=&quot;note&quot;/&gt;
+    Association:用于映射关联查询单个对象的信息
+    Property:返回主体类型中的Object对象属性
+    javaType:返回主体对象中的Object对象的路径
+    &lt;association property=&quot;user&quot;  javaType=&quot;cn.itcast.mybatis.po.User&quot;&gt;
+        &lt;id column=&quot;user_id&quot; property=&quot;id&quot;/&gt;
+        &lt;result column=&quot;username&quot; property=&quot;username&quot;/&gt;
+        &lt;result column=&quot;sex&quot; property=&quot;sex&quot;/&gt;
+        &lt;result column=&quot;address&quot; property=&quot;address&quot;/&gt;
+    &lt;/association&gt;
+&lt;/resultMap&gt;
+</code></pre><h4 id="4-2-2-一对多的关系（一个订单对应多个订单明细）"><a href="#4-2-2-一对多的关系（一个订单对应多个订单明细）" class="headerlink" title="4.2.2 一对多的关系（一个订单对应多个订单明细）"></a>4.2.2 一对多的关系（一个订单对应多个订单明细）</h4><pre><code>继承性：其它的和上面一样，但其中的extends却体现了mybatis的resultMap的继承性，这里就相当于把上面resultMap中间的部分加入到了下面这个resultMap中间。
+&lt;resultMap type=&quot;cn.itcast.mybatis.po.Orders&quot; id=&quot;OrdersAndOrderDetailResultMap&quot; extends=
+&quot;OrdersUserResultMap&quot;&gt;
+Collection：主要用于将查询的多条记录映射到对象集合中。
+Property:指明映射到返回类型中的那个属性。
+ofType:指明List集合属性的类型。
+&lt;collection property=&quot;orderdetails&quot; ofType=&quot;cn.itcast.mybatis.po.Orderdetail&quot;&gt;
+         &lt;id column=&quot;orderdetail_id&quot; property=&quot;id&quot;/&gt;
+         &lt;result column=&quot;items_id&quot; property=&quot;itemsId&quot;/&gt;
+         &lt;result column=&quot;items_num&quot; property=&quot;itemsNum&quot;/&gt;
+         &lt;result column=&quot;orders_id&quot; property=&quot;ordersId&quot;/&gt;
+    &lt;/collection&gt;
+&lt;/resultMap&gt;
+</code></pre><h4 id="4-2-3-多对多的关系（用户购买的商品信息查询）"><a href="#4-2-3-多对多的关系（用户购买的商品信息查询）" class="headerlink" title="4.2.3 多对多的关系（用户购买的商品信息查询）"></a>4.2.3 多对多的关系（用户购买的商品信息查询）</h4><pre><code>&lt;resultMap type=&quot;cn.itcast.mybatis.po.User&quot; id=&quot;UserAndItemsResultMap&quot;&gt;
+    用户信息    
+    &lt;id column=&quot;user_id&quot; property=&quot;id&quot;/&gt;
+        &lt;result column=&quot;username&quot; property=&quot;username&quot;/&gt;
+        &lt;result column=&quot;sex&quot; property=&quot;sex&quot;/&gt;
+        &lt;result column=&quot;address&quot; property=&quot;address&quot;/&gt;
+        一个用户对应多个订单，一对多关系，使用collection映射
+        &lt;collection property=&quot;ordersList&quot; ofType=&quot;cn.itcast.mybatis.po.Orders&quot;&gt;
+             &lt;id column=&quot;id&quot; property=&quot;id&quot;/&gt;
+             &lt;result column=&quot;user_id&quot; property=&quot;userId&quot;/&gt;
+            &lt;result column=&quot;number&quot; property=&quot;number&quot;/&gt;
+            &lt;result column=&quot;createtime&quot; property=&quot;createtime&quot;/&gt;
+            &lt;result column=&quot;note&quot; property=&quot;note&quot;/&gt;
+            一个订单对应多个订单明细也就是多个商品信息，一对多关系使用collection映射
+              &lt;collection property=&quot;orderdetails&quot; ofType=&quot;cn.itcast.mybatis.po.Orderdetail&quot;&gt;
+                      &lt;id column=&quot;orderdetail_id&quot; property=&quot;id&quot;/&gt;
+                     &lt;result column=&quot;items_id&quot; property=&quot;itemsId&quot;/&gt;
+                     &lt;result column=&quot;items_num&quot; property=&quot;itemsNum&quot;/&gt;
+                     &lt;result column=&quot;orders_id&quot; property=&quot;ordersId&quot;/&gt;
+                一个订单明细对应一个商品，一对一关系association映射
+                   &lt;association property=&quot;items&quot; javaType=&quot;cn.itcast.mybatis.po.Items&quot;&gt;
+                       &lt;id column=&quot;items_id&quot; property=&quot;id&quot;/&gt;
+                       &lt;result column=&quot;items_name&quot; property=&quot;name&quot;/&gt;
+                       &lt;result column=&quot;items_detail&quot; property=&quot;detail&quot;/&gt;
+                       &lt;result column=&quot;items_price&quot; property=&quot;price&quot;/&gt;
+                   &lt;/association&gt;
+              &lt;/collection&gt;
+         &lt;/collection&gt;
+&lt;/resultMap&gt;
+</code></pre><h3 id="4-3-mybatis的动态sql"><a href="#4-3-mybatis的动态sql" class="headerlink" title="4.3 mybatis的动态sql"></a>4.3 mybatis的动态sql</h3><p>MyBatis的动态SQL是基于OGNL表达式的，它可以帮助我们方便的在SQL语句中实现某些逻辑。<br>MyBatis中用于实现动态SQL的元素主要有：if,choose(when,otherwise),trim,where,set,foreach</p>
+<h4 id="4-3-1-if元素"><a href="#4-3-1-if元素" class="headerlink" title="4.3.1 if元素"></a>4.3.1 if元素</h4><p>if元素就是简单的条件判断，利用if语句我们可以实现某些简单的条件选择。例</p>
+<pre><code>&lt;select id=&quot;getUser&quot; parameterType=&quot;User&quot; resultType=&quot;User&quot;&gt;
+    select * from user where 1 = 1
+    &lt;if test=&quot;username != null and username != &apos;&apos;&quot;&gt;
+        and title = #{title}
+    &lt;/if&gt;
+&lt;/select&gt; 
+</code></pre><h4 id="4-3-2-choose元素"><a href="#4-3-2-choose元素" class="headerlink" title="4.3.2 choose元素"></a>4.3.2 choose元素</h4><p>choose在mybatis中的用法其实和jstl标签中的用法差不多的.例:</p>
+<pre><code>&lt;select id=&quot;getOrder&quot; parameterType=&quot;Order&quot; resultType=&quot;Order&quot;&gt;
+    select * from order where 1 = 1
+    &lt;choose&gt;
+        &lt;when test=&quot;orderNo != null and orderNo != &apos;&apos;&quot;&gt;
+            orderNo = #{orderNo}
+        &lt;/when&gt;
+        &lt;otherwise&gt;
+            &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+                createDate = #{createDate}
+            &lt;/if&gt;
+        &lt;/otherwise&gt;
+    &lt;/choose&gt;
+&lt;/select&gt; 
+</code></pre><h4 id="4-3-3-where元素"><a href="#4-3-3-where元素" class="headerlink" title="4.3.3 where元素"></a>4.3.3 where元素</h4><p>where元素的作用主要是简化SQL语句中where中的条件判断的使用这个元素以后，mybatis会只能的把首个and或者or给忽略。例:</p>
+<pre><code>&lt;select id=&quot;getOrder&quot; parameterType=&quot;Order&quot; resultType=&quot;Order&quot;&gt;
+    select * from order
+    &lt;where&gt;
+        &lt;if test=&quot;orderNo != null and orderNo != &apos;&apos;&quot;&gt;
+            orderNo = #{orderNo}
+        &lt;/if&gt;
+    &lt;/where&gt;
+&lt;/select&gt;
+</code></pre><h4 id="4-3-4-trim元素"><a href="#4-3-4-trim元素" class="headerlink" title="4.3.4 trim元素."></a>4.3.4 trim元素.</h4><p>trim元素为格式化元素.可以与其他标识完成where和set的功能Prefix：前缀增加suffix：后缀增加prefixOverrides：自动判断前置suffixOverrides： 自动判断后置。<br>无疑，在mybatis这是一个非常强大的元素，下面我们就来看看一些相关的例子。例:</p>
+<pre><code>1、trim替代set
+&lt;update id=&quot;updateOrder&quot; parameterType=&quot;Order&quot;&gt;
+    update order
+    &lt;trim prefix=&quot;set&quot; suffixOverrides=&quot;,&quot; suffix=&quot;where orderNo = #{orderNo}&quot;&gt;
+        &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+            createDate = #{createDate}
+        &lt;/if&gt;
+    &lt;/trim&gt;
+&lt;/update&gt;
+2、trim替代where
+&lt;select id=&quot;getOrder&quot; parameterType=&quot;Order&quot; resultType=&quot;Order&quot;&gt;
+    select * from order
+    &lt;trim prefix=&quot;where&quot; prefixOverrides=&quot;and|or&quot;&gt;
+        &lt;if test=&quot;orderNo != null and orderNo != &apos;&apos;&quot;&gt;
+            orderNo = #{orderNo}
+        &lt;/if&gt;
+        &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+            and createDate = #{createDate}
+        &lt;/if&gt;
+    &lt;/trim&gt;
+&lt;/select&gt;
+3、insert语句中trim的应用
+&lt;insert id=&quot;addOrder&quot; parameterType=&quot;Order&quot;&gt;
+    insert into order(
+        &lt;trim suffix=&quot;&quot; suffixOverrides=&quot;,&quot;&gt;
+            &lt;if test=&quot;orderNo != null and orderNo != &apos;&apos;&quot;&gt;
+                ORDERNO,
+            &lt;/if&gt;
+            &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+                CREATEDATE,
+            &lt;/if&gt;
+        &lt;/trim&gt;
+    )values(
+        &lt;trim suffix=&quot;&quot; suffixOverrides=&quot;,&quot;&gt;
+            &lt;if test=&quot;orderNo != null and orderNo != &apos;&apos;&quot;&gt;
+                #{orderNo},
+            &lt;/if&gt;
+            &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+                #{createDate},
+            &lt;/if&gt;
+        &lt;/trim&gt;
+    )
+&lt;/insert&gt;
+</code></pre><h4 id="4-3-5-set元素"><a href="#4-3-5-set元素" class="headerlink" title="4.3.5 set元素"></a>4.3.5 set元素</h4><p>set一般用于数据更新的修改操作。例:</p>
+<pre><code>&lt;update id=&quot;updateOrder&quot; parameterType=&quot;Order&quot;&gt;
+    update order
+    &lt;set&gt;
+        &lt;if test=&quot;createDate != null and createDate != &apos;&apos;&quot;&gt;
+            CREATEDATE = #{createDate}
+        &lt;/if&gt;
+    &lt;/set&gt;
+    where ORDERNO = #{orderNo}
+&lt;/update&gt;
+</code></pre><h4 id="4-3-6-foreach元素"><a href="#4-3-6-foreach元素" class="headerlink" title="4.3.6 foreach元素"></a>4.3.6 foreach元素</h4><p>foreach元素一般用户循环遍历的。例:</p>
+<pre><code>1、直接传入简单类型的list集合参数，这个时候collection必须是list
+&lt;select id=&quot;getOrder&quot; parameterType=&quot;Order&quot; resultType=&quot;Order&quot;&gt;
+    select * from order where ORDERNO in
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; open=&quot;(&quot; close=&quot;)&quot; separator=&quot;,&quot;&gt;
+        #{item}
+    &lt;/foreach&gt;
+&lt;/select&gt;
+2、传入list对象集合，同样的collection必须是list
+&lt;select id=&quot;getOrder&quot; parameterType=&quot;Order&quot; resultType=&quot;Order&quot;&gt;
+    select * from order where ORDERNO in
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; open=&quot;(&quot; close=&quot;)&quot; separator=&quot;,&quot;&gt;
+        #{item.orderNo}
+    &lt;/foreach&gt;
+&lt;/select&gt;
+3、map的方式传入list集合，这里的list，collection类型不限定
+&lt;select id=&quot;getOrder&quot; parameterType=&quot;map&quot; resultType=&quot;Order&quot;&gt;
+    select * from order where ORDERNO in
+    &lt;foreach collection=&quot;orderNos&quot; item=&quot;item&quot; open=&quot;(&quot; close=&quot;)&quot; separator=&quot;,&quot;&gt;
+        #{item}
+    &lt;/foreach&gt;
+&lt;/select&gt;
+</code></pre><h3 id="4-4-mybatis输入输出参数"><a href="#4-4-mybatis输入输出参数" class="headerlink" title="4.4 mybatis输入输出参数"></a>4.4 mybatis输入输出参数</h3><p>前面我们已经把mybatis自带的一些简单参数类型列举出来了，这里就不重复列举了。下面我们主要针对自定义的一些参数类型进行分析</p>
+<pre><code>&lt;select id=&quot;&quot; parameterType=&quot;User&quot; parameterMap=&quot;&quot;&gt;&lt;/select&gt;
+&lt;select id=&quot;&quot; resultType=&quot;User&quot; resultMap=&quot;resultMap&quot; &gt;&lt;/select&gt;
+</code></pre><p>一般情况下，除了parameterMap这个以外，其他在mybatis里面都是经常用的。无论是输入或者输出的参数类型我们除了可以引用myabtis自带的返回参数类型外，还可以自定义一些参数类型，常见的就是对应数据库表的实体对象和Map，但是往往比如说我们在做查询的时候，会涉及到多表的查询，可能需要用到另外一个实体中的某个属性，这个时候，我们就可以采用POJO对输入和输出的参数进行包装。可以继承某个实体，然后再另外定义一些属性，用来作为查询条件的属性。</p>
+<h2 id="5-mybatis批量数据操作"><a href="#5-mybatis批量数据操作" class="headerlink" title="5.mybatis批量数据操作"></a>5.mybatis批量数据操作</h2><h3 id="5-1-mybatis批量插入"><a href="#5-1-mybatis批量插入" class="headerlink" title="5.1 mybatis批量插入"></a>5.1 mybatis批量插入</h3><pre><code>1、基于oracle批量插入
+&lt;insert id=&quot;addOrder&quot; parameterType=&quot;Order&quot;&gt;
+    insert into order (ORDERNO,CREATEDATE) values
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; index=&quot;index&quot; separator=&quot;union all&quot;&gt;
+        (select #{item.orderNo},#{item.createDate} from dual)
+    &lt;/foreach&gt;
+&lt;/insert&gt;
+2、基于mysql批量插入
+&lt;insert id=&quot;addOrder&quot; parameterType=&quot;Order&quot;&gt;
+    insert into order (ORDERNO,CREATEDATE)  values
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; index=&quot;index&quot; separator=&quot;,&quot;&gt;
+        (#{item.orderNo},#{item.createDate})
+    &lt;/foreach&gt;
+&lt;/insert&gt;
+</code></pre><h3 id="5-2-mybatis批量更新"><a href="#5-2-mybatis批量更新" class="headerlink" title="5.2 mybatis批量更新"></a>5.2 mybatis批量更新</h3><pre><code>3、基于oracle批量插入
+&lt;insert id=&quot;addOrder&quot; parameterType=&quot;Order&quot;&gt;
+    insert into order (ORDERNO,CREATEDATE) values
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; index=&quot;index&quot; separator=&quot;union all&quot;&gt;
+        (select #{item.orderNo},#{item.createDate} from dual)
+    &lt;/foreach&gt;
+&lt;/insert&gt;
+4、基于mysql批量插入
+&lt;update id=&quot;updateOrder&quot; parameterType=&quot;Order&quot;&gt;
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; index=&quot;index&quot; open=&quot;&quot; close=&quot;&quot; separator=&quot;;&quot;&gt;
+        update order 
+        &lt;set&gt;
+           CREATEDATE=${item.createDate}
+        &lt;/set&gt;
+        where ORDERNO = ${item.orderNo}
+    &lt;/foreach&gt;
+&lt;/update&gt;
+</code></pre><h3 id="5-3-mybatis批量删除"><a href="#5-3-mybatis批量删除" class="headerlink" title="5.3 mybatis批量删除"></a>5.3 mybatis批量删除</h3><pre><code>&lt;delete id=&quot;deleteOrder&quot; parameterType=&quot;Order&quot;&gt;
+    delete from order where ORDERNO in
+    &lt;foreach collection=&quot;list&quot; item=&quot;item&quot; index=&quot;index&quot; open=&quot;(&quot;separator=&quot;,&quot; close=&quot;)&quot;&gt;
+        #{item.orderNo}
+    &lt;/foreach&gt;
+&lt;/delete&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2016/03/27/mybatis基础篇/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
+      
+      
+        <a href="http://yoursite.com/2016/03/27/mybatis基础篇/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/03/27/mybatis基础篇/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis/">mybatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/07/DOS命令创建maven项目/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          maven常用命令
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+
+<!-- 多说评论框 start -->
+	<div id="ds-thread" class="ds-thread" data-thread-key="2016/03/27/mybatis基础篇/" data-title="mybatis基础篇" data-url="http://yoursite.com/2016/03/27/mybatis基础篇/" data-author-key="233"></div>
+<!-- 多说评论框 end -->
+</section>
+</section>
+        
+          
+<aside id="sidebar">
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">关于我 ● About Me</h3>
+  <ul class="widget about-me">
+    <li><img class="author" title="About me" src="/css/images/avatar.png" /></li>
+    
+    <li><a href="http://lixiaofei1990101.github.io/about/">BLACK_LXF</a></li>
+    
+    <li>一介码农 / 物流专业</li>
+    
+    <li>QQ号：673236963</li>
+    
+    <li>Email：673236963@qq.com</li>
+    
+  </ul>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近文章 ● Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/">Hadoop学习(二) Hadoop生态圈</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/">Hadoop学习(一) Linux环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/12/github上传项目/">github上传项目</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/09/nexus搭建本地私服/">nexus搭建本地私服</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/02/JAVA中Excel的操作/">JAVA中Excel的操作</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/linux常用命令/">linux常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/easyui-列统计/">easyui-列统计</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/Lodop打印控件使用/">Lodop打印控件使用</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Servlet和struts共存/">Servlet和struts共存</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签 ● Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lodop/">Lodop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/easyui/">easyui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel-导出excel-导入excel/">excel,导出excel,导入excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo常用命令/">hexo常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protobuf/">protobuf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列统计/">列统计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打印/">打印</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云 ● Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 20px; color: #800080">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+    </div>
+  </div>
+
+  
+    
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">微博 ● Weibo </h3>
+  <div class="widget-weibo">
+    <iframe width="100%" height="500" class="share_self"  frameborder="0" scrolling="no" src="https://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=2&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=3223244320&verifier=e3f05fc2&dpc=1"></iframe>
+  </div>
+</div>
+  
+    <div class="widget tag">
+<h3 class="title">最新评论</h3>
+<div class="entry">
+<!-- 多说最新评论 start -->
+	<div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+<!-- 多说最新评论 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"lixfadmin"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</div>
+</div>
+
+  
+    
+<div class="widget-wrap">
+  <h3 class="widget-title">友情链接 ● Links</h3>
+  <ul class="widget">
+    
+    <li><a href="http://www.ttianjun.com/" target="_BLANK">●&emsp;凉水</a></li>
+    
+    <li><a href="http://xuruilu.com/" target="_BLANK">●&emsp;小徐</a></li>
+    
+    <li><a href="http://www.szmsd.com/" target="_BLANK">●&emsp;工作单位</a></li>
+    
+  </ul>
+</div>
+
+
+  
+
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <a href="https://github.com/lixiaofei1990101/"><img src="/css/images/umaru.png" style="position:fixed; right:0; bottom:0; width:70px"></a>
+  <div class="outer">
+    <div id="footer-info" class="inner" style="text-align:center;">
+	  <table width="100%" border="0">
+        <tr>
+          <td style="text-align:left; border: 0;">
+            Copyright &copy; 2015-2016 Li Xiao Fei &emsp;
+			Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a><br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>&emsp;
+	    Hosted on <a href="https://m.do.co/c/5598c1f49136" target="_blank">Digital Ocean</a>&emsp;
+	        Theme <a href="https://github.com/sykiechen/hexo-theme-hic17" target="_blank">HiC17</a> by Sykie Chen &emsp;
+		Search Engine by <a href="http://tinysou.com/" target="_blank">Tinysou</a>&nbsp;
+		  </td>
+		  <td style="text-align:right; border: 0;">
+		    <div style="font-family: FontAwesome;font-size: 20px;">
+		    <a href="http://weibo.com/u/3223244320" title="微博" target="_blank">&#61834;</a>&nbsp;
+			<a href="http://www.renren.com/894007766" title="人人" target="_blank">&#61835;</a>&nbsp;
+			<a href="http://user.qzone.qq.com/673236963" title="QQ空间" target="_blank">&#61910;</a>&nbsp;
+			<a href="http://mashable.com/category/facebook/" title="Facebook" target="_blank">&#62000;</a>&nbsp;
+			<a href="https://twitter.com/" title="twitter" target="_blank">&#61593;</a>&nbsp;
+			<a href="http://www.linkedin.com/" title="LinkedIn" target="_blank">&#61665;</a>&nbsp;
+			<a href="https://github.com/lixiaofei1990101/" title="GitHub" target="_blank">&#61595;</a>&nbsp;
+			<a href="https://plus.google.com/" title="Google+" target="_blank">&#61653;</a>
+			</div>
+			<a href="/atom.xml">订阅本站</a>&nbsp;
+			<a href="mailto:673236963@qq.com" target="_blank">联系博主</a>&nbsp;
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255146829'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1255146829' type='text/javascript'%3E%3C/script%3E"));</script>
+			&nbsp;ICP 备案
+		  </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"hkeyc17"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = '/js/ds_embed.js';
+		<!-- ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js'; -->
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<script>
+var option = {
+  engineKey: '695d0ac61847d1e43931'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+<script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof jQuery == 'undefined') {
+  document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+// ]]>
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+<div class="bottom-btn">
+
+	<a class="icon-gotop" href="javascript:void(0)" title="返回顶部"></a>
+	<script src="/js/gotop.js"></script>
+	<!--
+	<script src="/js/gotop.js"></script>
+	-->
+
+</div>
+
+
+<script src="/js/script.js"></script>
+<!-- Baidu Share Start --->
+<script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"1714312189"},"bdWbuid":3904642734,"bdText":"","bdMini":"2","bdMiniList":["douban","kaixin001","tieba","tsohu","sqq","youdao","qingbiji","mail","linkedin","mshare","copy","print"],"bdStyle":"1","bdSize":"24"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<!-- Baidu Share End --->
+  </div>
+</body>
+</html>
