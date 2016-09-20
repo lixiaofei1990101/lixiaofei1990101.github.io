@@ -95,6 +95,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hadoop学习-三-伪分布式搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
+    </h1>
+  
+
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/" class="article-date">
+  <time datetime="2016-09-20T08:32:04.000Z" itemprop="datePublished">2016-9-20 周二  16:32</time>
+</a>
+    
+  </div>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hadoop运行环境安装"><a href="#Hadoop运行环境安装" class="headerlink" title="Hadoop运行环境安装"></a>Hadoop运行环境安装</h2><p>Hadoop是用java语言编写的，要运行Hadoop，java环境是必须的。其实也就是安装JDK和相关环境变量的配置。</p>
+<ul>
+<li>JDK的安装<br>首先查看系统自带的java相关的程序，全部卸载掉。<br>rpm -qa|grep java（查看）<br>yum -y remove  java程序（卸载）<br>然后下载一个jdk-7u76-linux-x64.tar的JDK，然后将这个压缩包放到我们的linux上面，采用tar –zxvf filename 方式解压文件，然后用mv的命令将我们解压的目录放到指定的目录下面，剩下的就是配置环境变量了，首先找到/etc/profile这个文件到最后面加入环境变量。<pre><code>export JAVA_HOME=/opt/software/jdk1.7.0_76
+export PATH=$PATH:$JAVA_HOME/bin
+</code></pre>然后执行这个文件source /etc/profile。<br>这样就算是完成了linux的java环境的搭建。
+        
+          <p class="article-more-link">
+            <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/#main">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <a data-url="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/" data-id="citb8est60000zsktibujw9vg" class="article-share-link">分享</a>
+	  
+      
+        <a href="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/20/Hadoop学习-三-伪分布式搭建/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hadoop学习-二-Hadoop生态圈" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -118,14 +170,17 @@
 
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Table of Contents -->
-      	
+        <h2 id="Hadoop概况"><a href="#Hadoop概况" class="headerlink" title="Hadoop概况"></a>Hadoop概况</h2><p>关于时下最热的技术潮流，无疑大数据是首当其中最热的一个技术点，关于大数据的概念和方法论铺天盖地的到处宣扬。关于大数据项目可以真正被落地实施的解决方案就是：Hadoop为核心的的一些列开源分布式解决方案。<br>Hadoop是一个由Apache基金会所开发的分布式系统基础架构。<br>用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。<br>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System)，简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据，适合那些有着超大数据集(large data set)的应用程序。HDFS放宽了(relax)POSIX的要求，可以以流的形式访问(streaming access)文件系统中的数据。<br>Hadoop的框架最核心的设计就是:HDFS、MapReduce和Yarn。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算。Yran则可以看成一个调度系统。
+        
+          <p class="article-more-link">
+            <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/#main">阅读全文</a>
+          </p>
         
       
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="cit9vg3yz00018gkttk2jbeix" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="citb8estq0009zsktuvmh2q6b" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/19/Hadoop学习-二-Hadoop生态圈/">评论</a>
@@ -174,7 +229,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="cit9vg3yr00008gktzti4jvr8" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="citb8estl0005zsktt9xqen1h" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
@@ -222,7 +277,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="cit9vg3zp000h8gktl50ze1r9" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="citb8esua000mzsktq1prjgh2" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/12/github上传项目/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/12/github上传项目/">评论</a>
@@ -270,7 +325,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/09/nexus搭建本地私服/" data-id="cit9vg3zx000n8gktb00r9v9d" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/09/nexus搭建本地私服/" data-id="citb8esun000tzsktl334li2i" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/09/nexus搭建本地私服/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/09/nexus搭建本地私服/">评论</a>
@@ -285,59 +340,10 @@
 
 
   
-    <article id="post-JAVA中Excel的操作" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/02/JAVA中Excel的操作/">JAVA中Excel的操作</a>
-    </h1>
-  
-
-      </header>
-    
-  <div class="article-meta">
-    <a href="/2016/09/02/JAVA中Excel的操作/" class="article-date">
-  <time datetime="2016-09-02T03:15:44.000Z" itemprop="datePublished">2016-9-2 周五  11:15</time>
-</a>
-    
-  </div>
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在java这个行业里，主要有两个开源的工具用来操作Excel，一个是jxl，还有一个是poi。<br>jxl功能相对POI比较弱一点。但jExcelAPI对中文支持非常好，API是纯Java的<br>， 并不依赖Windows系统，即使运行在Linux下，它同样能够正确的处理Excel文件。 另外需要说明的是<br>，这套API对图形和图表的支持很有限，而且仅仅识别PNG格式。下面就是利用poi用于操作Excel编写的两个工具类。</p>
-<h3 id="导出Excel"><a href="#导出Excel" class="headerlink" title="导出Excel"></a>导出Excel</h3><p>在我们做java开发的过程中,导出Excel是经常会出现的，为了方便使用做成了一个通用的工具类，在这个工具中，我们只需要传入要导出数据的list集合对象和表头部分就OK了。
-        
-          <p class="article-more-link">
-            <a href="/2016/09/02/JAVA中Excel的操作/#main">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-	  
-	    <a data-url="http://yoursite.com/2016/09/02/JAVA中Excel的操作/" data-id="cit9vg3z500058gkt7cn8qyff" class="article-share-link">分享</a>
-	  
-      
-        <a href="http://yoursite.com/2016/09/02/JAVA中Excel的操作/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/02/JAVA中Excel的操作/">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/excel-导出excel-导入excel/">excel,导出excel,导入excel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -367,6 +373,10 @@
     <h3 class="widget-title">最近文章 ● Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
+          </li>
         
           <li>
             <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/">Hadoop学习(二) Hadoop生态圈</a>
@@ -404,10 +414,6 @@
             <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
           </li>
         
-          <li>
-            <a href="/2016/05/10/Servlet和struts共存/">Servlet和struts共存</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -427,7 +433,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 20px; color: #800080">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 17px; color: #7f62af">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
     </div>
   </div>
 

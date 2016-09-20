@@ -5,16 +5,21 @@
   
   <title>Hadoop学习(二) Hadoop生态圈 | 不合格的壞人 - BLACK_LXF个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BLACK_LXF个人博客">
+  <meta name="description" content="Hadoop概况关于时下最热的技术潮流，无疑大数据是首当其中最热的一个技术点，关于大数据的概念和方法论铺天盖地的到处宣扬。关于大数据项目可以真正被落地实施的解决方案就是：Hadoop为核心的的一些列开源分布式解决方案。Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。Hadoop实现了一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop学习(二) Hadoop生态圈">
 <meta property="og:url" content="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/index.html">
 <meta property="og:site_name" content="不合格的壞人">
-<meta property="og:description" content="BLACK_LXF个人博客">
-<meta property="og:updated_time" content="2016-09-19T03:07:59.304Z">
+<meta property="og:description" content="Hadoop概况关于时下最热的技术潮流，无疑大数据是首当其中最热的一个技术点，关于大数据的概念和方法论铺天盖地的到处宣扬。关于大数据项目可以真正被落地实施的解决方案就是：Hadoop为核心的的一些列开源分布式解决方案。Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。Hadoop实现了一个">
+<meta property="og:image" content="http://yoursite.com/img/hadoop_test1.png">
+<meta property="og:image" content="http://yoursite.com/img/hdfs_test1.png">
+<meta property="og:image" content="http://yoursite.com/img/mapreduce_test1.png">
+<meta property="og:image" content="http://yoursite.com/img/mapreduce_test2.png">
+<meta property="og:updated_time" content="2016-09-19T16:40:18.638Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop学习(二) Hadoop生态圈">
-<meta name="twitter:description" content="BLACK_LXF个人博客">
+<meta name="twitter:description" content="Hadoop概况关于时下最热的技术潮流，无疑大数据是首当其中最热的一个技术点，关于大数据的概念和方法论铺天盖地的到处宣扬。关于大数据项目可以真正被落地实施的解决方案就是：Hadoop为核心的的一些列开源分布式解决方案。Hadoop是一个由Apache基金会所开发的分布式系统基础架构。用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。Hadoop实现了一个">
+<meta name="twitter:image" content="http://yoursite.com/img/hadoop_test1.png">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -119,7 +124,27 @@
       
         <!-- Table of Contents -->
       	
-        
+        <h2 id="Hadoop概况"><a href="#Hadoop概况" class="headerlink" title="Hadoop概况"></a>Hadoop概况</h2><p>关于时下最热的技术潮流，无疑大数据是首当其中最热的一个技术点，关于大数据的概念和方法论铺天盖地的到处宣扬。关于大数据项目可以真正被落地实施的解决方案就是：Hadoop为核心的的一些列开源分布式解决方案。<br>Hadoop是一个由Apache基金会所开发的分布式系统基础架构。<br>用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。<br>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System)，简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据，适合那些有着超大数据集(large data set)的应用程序。HDFS放宽了(relax)POSIX的要求，可以以流的形式访问(streaming access)文件系统中的数据。<br>Hadoop的框架最核心的设计就是:HDFS、MapReduce和Yarn。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算。Yran则可以看成一个调度系统。<a id="more"></a><br>废话不多说先看一张图，下图是hadoop生态系统，集成spark生态圈。在未来一段时间内，hadoop将于spark共存，hadoop与spark都能部署在yarn、mesos的资源管理系统之上。<br><img src="/img/hadoop_test1.png" alt="hadoop"></p>
+<h2 id="Hadoop生态成员介绍"><a href="#Hadoop生态成员介绍" class="headerlink" title="Hadoop生态成员介绍"></a>Hadoop生态成员介绍</h2><p>从上面可以看到hadoop生态圈相关的成员是很多的，我这里就不一一介绍了。就针对hdfs，mapreduce和yarn这些重点成员详细介绍下。</p>
+<h3 id="HDFS-Hadoop分布式文件系统"><a href="#HDFS-Hadoop分布式文件系统" class="headerlink" title="HDFS(Hadoop分布式文件系统)"></a><a href="http://hadoop.apache.org/" target="_blank" rel="external">HDFS</a>(Hadoop分布式文件系统)</h3><p>HDFS文件系统无疑是hadoop最为重要的成员之一，HDFS是Hadoop体系中数据存储管理的基础。它是一个高度容错的系统，能检测和应对硬件故障，用于在低成本的通用硬件上运行。HDFS简化了文件的一致性模型，通过流式数据访问，提供高吞吐量应用程序数据访问功能，适合带有大型数据集的应用程序。它提供了一次写入多次读取的机制，数据以块的形式，同时分布在集群不同物理机器上。下面我们就来看看HDFS的体系架构。<br>HDFS是一个主/从（Mater/Slave）体系结构，从最终用户的角度来看，它就像传统的文件系统一样，可以通过目录路径对文件执行CRUD（Create、Read、Update和Delete）操作。但由于分布式存储的性质，HDFS集群拥有一个NameNode和一些DataNode。NameNode管理文件系统的元数据，DataNode存储实际的数据。客户端通过同NameNode和DataNodes的交互访问文件系统。客户端联系NameNode以获取文件的元数据，而真正的文件I/O操作是直接和DataNode进行交互的。<br><img src="/img/hdfs_test1.png" alt="hdfs"></p>
+<h4 id="HDFS文件系统守护进程"><a href="#HDFS文件系统守护进程" class="headerlink" title="HDFS文件系统守护进程"></a>HDFS文件系统守护进程</h4><ul>
+<li>NameNode可以看作是分布式文件系统中的管理者，主要负责管理文件系统的命名空间、集群配置信息和存储块的复制等。存储文件的元数据如文件名，文件目录结构，文件属性（生成时间,副本数,文件权限），以及每个文件的块列表以及块所在的DataNode等等。它是一个中心服务器，单一节,负责管理文件系统的名字空间(namespace)以及客户端对文件的访问，它维护着每个文件系统树和整棵树内所有的文件和目录，这些信息已两个文件形式永久保存在本地磁盘上：命名控件镜像文件(Fsimage)和编辑日志(Edit log)。文件操作，NameNode负责文件元数据的操作，DataNode负责处理文件内容的读写请求，跟文件内容相关的数据流不经过NameNode，只会询问它跟那个DataNode联系，否则NameNode会成为系统的瓶颈。</li>
+<li>DataNode是文件存储的基本单元，在本地文件系统存储文件块数据，以及块数据的校验和。可以创建、删除、移动或重命名文件，当文件创建、写入和关闭之后不能修改文件内容。一个数据块在DataNode以文件存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。DataNode启动后向NameNode注册，通过后，周期性（1小时）向NameNode上报所有的块信息。心跳是每3秒一次，心跳返回结果带有NameNode给该DataNode的命令如复制块数据到另一台机器，或删除某个数据块。如果超过10分钟没有收到某个DataNode 的心跳，则认为该节点不可用。当DataNode磁盘挂了，都会尽快的通知NameNode。如果该机器挂了，由于datanode每3秒钟向namenode发送心跳，如果10分钟datanode没有向namenode发送心跳，则namenode认为该datanode已经dead，namenode将取出该datanode上对应的block，对其进行复制。</li>
+<li>Secondary NameNode：辅助NameNode，分担其工作量；定期合并fsimage和edits，推送给NameNode；紧急情况下，可辅助恢复NameNode，但Secondary NameNode并非NameNode的热备。</li>
+<li>Client就是需要获取分布式文件系统文件的应用程序。<h4 id="文件写入"><a href="#文件写入" class="headerlink" title="文件写入"></a>文件写入</h4></li>
+<li>Client向NameNode发起文件写入的请求。</li>
+<li>NameNode根据文件大小和文件块配置情况，返回给Client它所管理部分DataNode的信息。</li>
+<li>Client将文件划分为多个Block，根据DataNode的地址信息，按顺序写入到每一个DataNode块中。<h4 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h4></li>
+<li>Client向NameNode发起文件读取的请求。</li>
+<li>NameNode返回文件存储的DataNode的信息。</li>
+<li>Client读取文件信息。<h3 id="MapReduce-分布式计算框架"><a href="#MapReduce-分布式计算框架" class="headerlink" title="MapReduce(分布式计算框架)"></a><a href="http://hadoop.apache.org/" target="_blank" rel="external">MapReduce</a>(分布式计算框架)</h3>MapReduce是一种计算模型，用以进行大数据量的计算。其中Map对数据集上的独立元素进行指定的操作，生成键-值对形式中间结果。Reduce则对中间结果中相同“键”的所有“值”进行规约，以得到最终结果。MapReduce这样的功能划分，非常适合在大量计算机组成的分布式并行环境里进行数据处理。<br><img src="/img/mapreduce_test1.png" alt="mapreduce1"><h4 id="MapReduce守护进程"><a href="#MapReduce守护进程" class="headerlink" title="MapReduce守护进程"></a>MapReduce守护进程</h4></li>
+<li>JobTracker：Master节点，只有一个，管理所有作业，作业/任务的监控、错误处理等；将任务分解成一系列任务，并分派给TaskTracker。</li>
+<li>TaskTracker：Slave节点，运行Map Task和Reduce Task；并与JobTracker交互，汇报任务状态。</li>
+<li>Map Task：解析每条数据记录，传递给用户编写的map(),并执行，将输出结果写入本地磁盘(如果为map-only作业，直接写入HDFS)。</li>
+<li>Reducer Task：从Map Task的执行结果中，远程读取输入数据，对数据进行排序，将数据按照分组传递给用户编写的reduce函数执行。<h4 id="MapReduce处理流程"><a href="#MapReduce处理流程" class="headerlink" title="MapReduce处理流程"></a>MapReduce处理流程</h4><img src="/img/mapreduce_test2.png" alt="mapreduce2"></li>
+<li>以hadoop中的单词统计为例子，其实就相当于java中的hello word程序。入门程序。当我们的用户运行前面的jar测试程序的时候，首先到hdfs文件系统中拿到这些文件，因为文件系统中有两个文件，每个文件对应一个MapReduce程序，每个程序分别解析文件当中的单词，也就是从Map到sorter的过程，然后会对解析的这些单词进行排序处理，也就是从sorter到Reduc的过程，然后Recuce会对排序的单词进行统计，然后再写到我们的HDFS文件系统上。这里我根据自己的理解去写的。<h3 id="Yran-分布式资源管理器）"><a href="#Yran-分布式资源管理器）" class="headerlink" title="Yran(分布式资源管理器）"></a><a href="http://hadoop.apache.org/" target="_blank" rel="external">Yran</a>(分布式资源管理器）</h3>YARN是下一代MapReduce，即MRv2，是在第一代MapReduce基础上演变而来的，主要是为了解决原始Hadoop扩展性较差，不支持多计算框架而提出的。<br>Yarn是下一代 Hadoop 计算平台，yarn是一个通用的运行时框架，用户可以编写自己的计算框架，在该运行环境中运行。<br>用于自己编写的框架作为客户端的一个lib，在运用提交作业时打包即可。该框架为提供了以下几个组件：<br>1.资源管理：包括应用程序管理和机器资源管理<br>2.资源双层调度<br>3.容错性：各个组件均有考虑容错性<br>4.扩展性：可扩展到上万个节点<h3 id="HBASE-分布式列存数据库"><a href="#HBASE-分布式列存数据库" class="headerlink" title="HBASE(分布式列存数据库)"></a><a href="http://hbase.apache.org/" target="_blank" rel="external">HBASE</a>(分布式列存数据库)</h3>源自Google的Bigtable论文，发表于2006年11月，HBase是Google Bigtable克隆版<br>HBase是一个建立在HDFS之上，面向列的针对结构化数据的可伸缩、高可靠、高性能、分布式和面向列的动态模式数据库。<br>HBase采用了BigTable的数据模型：增强的稀疏排序映射表（Key/Value），其中，键由行关键字、列关键字和时间戳构成。<br>HBase提供了对大规模数据的随机、实时读写访问，同时，HBase中保存的数据可以使用MapReduce来处理，它将数据存储和并行计算完美地结合在一起。<h3 id="Zookeeper-分布式协作服务"><a href="#Zookeeper-分布式协作服务" class="headerlink" title="Zookeeper(分布式协作服务)"></a><a href="http://zookeeper.apache.org/" target="_blank" rel="external">Zookeeper</a>(分布式协作服务)</h3>源自Google的Chubby论文，发表于2006年11月，Zookeeper是Chubby克隆版<br>解决分布式环境下的数据管理问题：统一命名，状态同步，集群管理，配置同步等。<br>Hadoop的许多组件依赖于Zookeeper，它运行在计算机集群上面，用于管理Hadoop操作。<h3 id="HIVE-数据仓库"><a href="#HIVE-数据仓库" class="headerlink" title="HIVE(数据仓库)"></a><a href="http://hive.apache.org/" target="_blank" rel="external">HIVE</a>(数据仓库)</h3>由facebook开源，最初用于解决海量结构化的日志数据统计问题。<br>Hive定义了一种类似SQL的查询语言(HQL),将SQL转化为MapReduce任务在Hadoop上执行。通常用于离线分析。<br>HQL用于运行存储在Hadoop上的查询语句，Hive让不熟悉MapReduce开发人员也能编写数据查询语句，然后这些语句被翻译为Hadoop上面的MapReduce任务。<h3 id="Pig-ad-hoc脚本"><a href="#Pig-ad-hoc脚本" class="headerlink" title="Pig(ad-hoc脚本)"></a><a href="http://pig.apache.org/" target="_blank" rel="external">Pig</a>(ad-hoc脚本)</h3>由yahoo!开源，设计动机是提供一种基于MapReduce的ad-hoc(计算在query时发生)数据分析工具<br>Pig定义了一种数据流语言—Pig Latin，它是MapReduce编程的复杂性的抽象,Pig平台包括运行环境和用于分析Hadoop数据集的脚本语言(Pig Latin)。<br>其编译器将Pig Latin翻译成MapReduce程序序列将脚本转换为MapReduce任务在Hadoop上执行。通常用于进行离线分析。<h3 id="Sqoop-数据ETL-同步工具"><a href="#Sqoop-数据ETL-同步工具" class="headerlink" title="Sqoop(数据ETL/同步工具)"></a><a href="http://sqoop.apache.org/" target="_blank" rel="external">Sqoop</a>(数据ETL/同步工具)</h3>Sqoop是SQL-to-Hadoop的缩写，主要用于传统数据库和Hadoop之前传输数据。数据的导入和导出本质上是Mapreduce程序，充分利用了MR的并行化和容错性。<br>Sqoop利用数据库技术描述数据架构，用于在关系数据库、数据仓库和Hadoop之间转移数据。<h3 id="Flume-日志收集工具"><a href="#Flume-日志收集工具" class="headerlink" title="Flume(日志收集工具)"></a><a href="http://flume.apache.org/" target="_blank" rel="external">Flume</a>(日志收集工具)</h3>Cloudera开源的日志收集系统，具有分布式、高可靠、高容错、易于定制和扩展的特点。<br>它将数据从产生、传输、处理并最终写入目标的路径的过程抽象为数据流，在具体的数据流中，数据源支持在Flume中定制数据发送方，从而支持收集各种不同协议数据。<br>同时，Flume数据流提供对日志数据进行简单处理的能力，如过滤、格式转换等。此外，Flume还具有能够将日志写往各种数据目标（可定制）的能力。<br>总的来说，Flume是一个可扩展、适合复杂环境的海量日志收集系统。当然也可以用于收集其他类型数据<h3 id="Mahout-数据挖掘算法库"><a href="#Mahout-数据挖掘算法库" class="headerlink" title="Mahout(数据挖掘算法库)"></a><a href="http://mahout.apache.org/" target="_blank" rel="external">Mahout</a>(数据挖掘算法库)</h3>Mahout起源于2008年，最初是Apache Lucent的子项目，它在极短的时间内取得了长足的发展，现在是Apache的顶级项目。<br>Mahout的主要目标是创建一些可扩展的机器学习领域经典算法的实现，旨在帮助开发人员更加方便快捷地创建智能应用程序。<br>Mahout现在已经包含了聚类、分类、推荐引擎（协同过滤）和频繁集挖掘等广泛使用的数据挖掘方法。<br>除了算法，Mahout还包含数据的输入/输出工具、与其他存储系统（如数据库、MongoDB 或Cassandra）集成等数据挖掘支持架构。<h3 id="Oozie-工作流调度器"><a href="#Oozie-工作流调度器" class="headerlink" title="Oozie(工作流调度器)"></a><a href="http://oozie.apache.org/" target="_blank" rel="external">Oozie</a>(工作流调度器)</h3>Oozie是一个可扩展的工作体系，集成于Hadoop的堆栈，用于协调多个MapReduce作业的执行。它能够管理一个复杂的系统，基于外部事件来执行，外部事件包括数据的定时和数据的出现。<br>Oozie工作流是放置在控制依赖DAG（有向无环图 Direct Acyclic Graph）中的一组动作（例如，Hadoop的Map/Reduce作业、Pig作业等），其中指定了动作执行的顺序。<h3 id="Mesos-分布式资源管理器"><a href="#Mesos-分布式资源管理器" class="headerlink" title="Mesos(分布式资源管理器)"></a><a href="http://mesos.apache.org/" target="_blank" rel="external">Mesos</a>(分布式资源管理器)</h3>Mesos诞生于UC Berkeley的一个研究项目，现已成为Apache项目，当前有一些公司使用Mesos管理集群资源，比如Twitter。<br>与yarn类似，Mesos是一个资源统一管理和调度的平台，同样支持比如MR、steaming等多种运算框架。<h3 id="Tachyon-分布式内存文件系统"><a href="#Tachyon-分布式内存文件系统" class="headerlink" title="Tachyon(分布式内存文件系统)"></a><a href="http://tachyon-project.org/" target="_blank" rel="external">Tachyon</a>(分布式内存文件系统)</h3>Tachyon（/‘tæki:ˌɒn/ 意为超光速粒子）是以内存为中心的分布式文件系统，拥有高性能和容错能力，<br>能够为集群框架（如Spark、MapReduce）提供可靠的内存级速度的文件共享服务。<br>Tachyon诞生于UC Berkeley的AMPLab<h3 id="Tez-DAG计算模型"><a href="#Tez-DAG计算模型" class="headerlink" title="Tez(DAG计算模型)"></a><a href="http://tez.apache.org/" target="_blank" rel="external">Tez</a>(DAG计算模型)</h3>Tez是Apache最新开源的支持DAG作业的计算框架，它直接源于MapReduce框架，核心思想是将Map和Reduce两个操作进一步拆分，<br>即Map被拆分成Input、Processor、Sort、Merge和Output， Reduce被拆分成Input、Shuffle、Sort、Merge、Processor和Output等，<br>这样，这些分解后的元操作可以任意灵活组合，产生新的操作，这些操作经过一些控制程序组装后，可形成一个大的DAG作业。<br>目前hive支持mr、tez计算模型，tez能完美二进制mr程序，提升运算性能。<h3 id="Spark-内存DAG计算模型"><a href="#Spark-内存DAG计算模型" class="headerlink" title="Spark(内存DAG计算模型)"></a><a href="http://spark.apache.org/" target="_blank" rel="external">Spark</a>(内存DAG计算模型)</h3>Spark是一个Apache项目，它被标榜为“快如闪电的集群计算”。它拥有一个繁荣的开源社区，并且是目前最活跃的Apache项目。<br>最早Spark是UC Berkeley AMP lab所开源的类Hadoop MapReduce的通用的并行计算框架。<br>Spark提供了一个更快、更通用的数据处理平台。和Hadoop相比，Spark可以让你的程序在内存中运行时速度提升100倍，或者在磁盘上运行时速度提升10倍<h3 id="Giraph-图计算模型"><a href="#Giraph-图计算模型" class="headerlink" title="Giraph(图计算模型)"></a><a href="http://giraph.apache.org/" target="_blank" rel="external">Giraph</a>(图计算模型)</h3>Apache Giraph是一个可伸缩的分布式迭代图处理系统， 基于Hadoop平台，灵感来自 BSP (bulk synchronous parallel) 和 Google 的 Pregel。<br>最早出自雅虎。雅虎在开发Giraph时采用了Google工程师2010年发表的论文《Pregel：大规模图表处理系统》中的原理。后来，雅虎将Giraph捐赠给Apache软件基金会。<br>目前所有人都可以下载Giraph，它已经成为Apache软件基金会的开源项目，并得到Facebook的支持，获得多方面的改进。<h3 id="GraphX-图计算模型"><a href="#GraphX-图计算模型" class="headerlink" title="GraphX(图计算模型)"></a><a href="http://spark.apache.org/graphx/" target="_blank" rel="external">GraphX</a>(图计算模型)</h3>Spark GraphX最先是伯克利AMPLAB的一个分布式图计算框架项目，目前整合在spark运行框架中，为其提供BSP大规模并行图计算能力。<h3 id="MLib-机器学习库"><a href="#MLib-机器学习库" class="headerlink" title="MLib(机器学习库)"></a><a href="http://spark.apache.org/mllib/" target="_blank" rel="external">MLib</a>(机器学习库)</h3>Spark MLlib是一个机器学习库，它提供了各种各样的算法，这些算法用来在集群上针对分类、回归、聚类、协同过滤等。<h3 id="Streaming-流计算模型"><a href="#Streaming-流计算模型" class="headerlink" title="Streaming(流计算模型)"></a><a href="http://spark.apache.org/streaming/" target="_blank" rel="external">Streaming</a>(流计算模型)</h3>Spark Streaming支持对流数据的实时处理，以微批的方式对实时数据进行计算<h3 id="Kafka-分布式消息队列"><a href="#Kafka-分布式消息队列" class="headerlink" title="Kafka(分布式消息队列)"></a><a href="http://kafka.apache.org/" target="_blank" rel="external">Kafka</a>(分布式消息队列)</h3>Kafka是Linkedin于2010年12月份开源的消息系统，它主要用于处理活跃的流式数据。<br>活跃的流式数据在web网站应用中非常常见，这些数据包括网站的pv、用户访问了什么内容，搜索了什么内容等。<br>这些数据通常以日志的形式记录下来，然后每隔一段时间进行一次统计处理。<h3 id="Phoenix-hbase-sql接口"><a href="#Phoenix-hbase-sql接口" class="headerlink" title="Phoenix(hbase sql接口)"></a><a href="http://phoenix.apache.org/" target="_blank" rel="external">Phoenix</a>(hbase sql接口)</h3>Apache Phoenix 是HBase的SQL驱动，Phoenix 使得Hbase 支持通过JDBC的方式进行访问，并将你的SQL查询转换成Hbase的扫描和相应的动作。<h3 id="ranger-安全管理工具"><a href="#ranger-安全管理工具" class="headerlink" title="ranger(安全管理工具)"></a><a href="http://ranger.apache.org/" target="_blank" rel="external">ranger</a>(安全管理工具)</h3>Apache ranger是一个hadoop集群权限框架，提供操作、监控、管理复杂的数据权限，它提供一个集中的管理机制，管理基于yarn的hadoop生态圈的所有数据权限。<h3 id="knox-hadoop安全网关"><a href="#knox-hadoop安全网关" class="headerlink" title="knox(hadoop安全网关)"></a><a href="http://knox.apache.org/" target="_blank" rel="external">knox</a>(hadoop安全网关)</h3>Apache knox是一个访问hadoop集群的restapi网关，它为所有rest访问提供了一个简单的访问接口点，能完成3A认证（Authentication，Authorization，Auditing）和SSO（单点登录）等<h3 id="falcon-数据生命周期管理工具"><a href="#falcon-数据生命周期管理工具" class="headerlink" title="falcon(数据生命周期管理工具)"></a><a href="http://falcon.apache.org/" target="_blank" rel="external">falcon</a>(数据生命周期管理工具)</h3>Apache Falcon 是一个面向Hadoop的、新的数据处理和管理平台，设计用于数据移动、数据管道协调、生命周期管理和数据发现。它使终端用户可以快速地将他们的数据及其相关的处理和管理任务“上载（onboard）”到Hadoop集群。<h3 id="Ambari-安装部署配置管理工具"><a href="#Ambari-安装部署配置管理工具" class="headerlink" title="Ambari(安装部署配置管理工具)"></a><a href="http://ambari.apache.org/" target="_blank" rel="external">Ambari</a>(安装部署配置管理工具)</h3>Apache Ambari 的作用来说，就是创建、管理、监视 Hadoop 的集群，是为了让 Hadoop 以及相关的大数据软件更容易使用的一个web工具。<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>从上面可以看到要学hadoop，我们需要学习的东西还是挺多的。加油吧！小伙伴们。</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
@@ -137,6 +162,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hadoop学习(三) 伪分布式搭建
+        
+      </div>
+    </a>
   
   
     <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/" id="article-nav-older" class="article-nav-link-wrap">
@@ -186,6 +220,10 @@
       <ul>
         
           <li>
+            <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/">Hadoop学习(二) Hadoop生态圈</a>
           </li>
         
@@ -221,10 +259,6 @@
             <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
           </li>
         
-          <li>
-            <a href="/2016/05/10/Servlet和struts共存/">Servlet和struts共存</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -244,7 +278,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 20px; color: #800080">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 17px; color: #7f62af">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
     </div>
   </div>
 

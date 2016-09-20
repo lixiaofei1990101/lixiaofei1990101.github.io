@@ -11,15 +11,10 @@
 <meta property="og:url" content="http://yoursite.com/2016/09/09/nexus搭建本地私服/index.html">
 <meta property="og:site_name" content="不合格的壞人">
 <meta property="og:description" content="Nexus介绍Nexus是常用的Maven私用服务器。一般是公司内部使用。下载地址是：http://www.sonatype.org/nexus/go，Nexus常用功能是：指定私服的中央地址、将自己的Maven项目指定到私服地址、从私服下载中央库的项目索引、从私服仓库下载依赖组件、将第三方项目jar上传到私服供其他项目组使用。">
-<meta property="og:image" content="http://yoursite.com/../images/test1.jpg">
-<meta property="og:image" content="http://yoursite.com/../images/test4.jpg">
-<meta property="og:image" content="http://yoursite.com/../images/test2.jpg">
-<meta property="og:image" content="http://yoursite.com/../images/test3.jpg">
-<meta property="og:updated_time" content="2016-09-09T09:14:15.016Z">
+<meta property="og:updated_time" content="2016-09-19T14:53:37.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nexus搭建本地私服">
 <meta name="twitter:description" content="Nexus介绍Nexus是常用的Maven私用服务器。一般是公司内部使用。下载地址是：http://www.sonatype.org/nexus/go，Nexus常用功能是：指定私服的中央地址、将自己的Maven项目指定到私服地址、从私服下载中央库的项目索引、从私服仓库下载依赖组件、将第三方项目jar上传到私服供其他项目组使用。">
-<meta name="twitter:image" content="http://yoursite.com/../images/test1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -126,13 +121,13 @@
       	
         <h2 id="Nexus介绍"><a href="#Nexus介绍" class="headerlink" title="Nexus介绍"></a>Nexus介绍</h2><p>Nexus是常用的Maven私用服务器。一般是公司内部使用。下载地址是：<a href="http://www.sonatype.org/nexus/go，" target="_blank" rel="external">http://www.sonatype.org/nexus/go，</a><br>Nexus常用功能是：指定私服的中央地址、将自己的Maven项目指定到私服地址、从私服下载中央库的项目索引、从私服仓库下载依赖组件、将第三方项目jar上传到私服供其他项目组使用。<a id="more"></a></p>
 <h2 id="Nexus的安装"><a href="#Nexus的安装" class="headerlink" title="Nexus的安装"></a>Nexus的安装</h2><p>要安装这个，首先确保电脑中已经安装好了，maven和jdk的环境，然后通过在上面提供的链接下载nexus-2.13.0-01-bundle.zip，现在我这里的是这个最新的版本。下载完成以后，将压缩包解压，然后进入到bin/jsw/windows-x86-64。这个目录下面，因为我这里的是windows 64位的系统，如果其他系统，进入相应的目录下面，不多介绍了，网上也有很多这样的例子。然后点击install-nexus.bat，执行安装到windows服务里面这里默认的是自动启动服务，如果你不想自动启动的话，请在windows服务中找到该服务，设置属性就OK了。到这里Nexus就算是安装完成了。然后启动服务在浏览器中输入默认的：<span><a href="http://localhost:8080/nexus" target="_blank" rel="external">http://localhost:8080/nexus</a></span>。注意：这是默认的端口号，做开发的同学都知道，8081这个端口，有时候会经常在开发的时候被我们使用到。这样会存在端口冲突的情况，导致我们的服务启动失败。OK，这个时候我们知道到nexus下面的解压目录。下面有个conf目录，找到nenux.properties这个文件，修改application-port这个的值，然后再启动服务。访问：<span><a href="http://localhost:端口号/nexus" target="_blank" rel="external">http://localhost:端口号/nexus</a></span></p>
-<h2 id="Nexus设置"><a href="#Nexus设置" class="headerlink" title="Nexus设置"></a>Nexus设置</h2><p>在登陆我们的web界面后，在我们的右上角有个Log In，点击进行登陆。默认的账户：admin  密码：admin123。登陆完成后，点击右侧菜单栏中的Repositories，这个就是仓库管理的地方了。<br>一般用到的仓库种类是hosted、proxy。Hosted代表宿主仓库，用来发布一些第三方不允许的组件，比如oracle驱动、比如商业软件jar包。Proxy代表代理远程的仓库，最典型的就是Maven官方中央仓库、JBoss仓库等等。如果构建的Maven项目本地仓库没有依赖包，那么就会去这个代理站点去下载，那么如果代理站点也没有此依赖包，就回去远程中央仓库下载依赖，这些中央仓库就是proxy。代理站点下载成功后再下载至本机。笔者认为，其实Maven这个自带的默认仓库一般情况下已经够大多数项目使用了。特殊情况时在配置新的仓库，指定url即可，一般熟悉ExtJS的人操作这个Nexus都没什么问题，单词不是很难，不明白的查查单词基本差不多。就是如果Sonatype公司对其做了国际化一的处理就更好了。<br><img src="../images/test1.jpg" alt="图1"><br>hosted   类型的仓库，内部项目的发布仓库</p>
+<h2 id="Nexus设置"><a href="#Nexus设置" class="headerlink" title="Nexus设置"></a>Nexus设置</h2><p>在登陆我们的web界面后，在我们的右上角有个Log In，点击进行登陆。默认的账户：admin  密码：admin123。登陆完成后，点击右侧菜单栏中的Repositories，这个就是仓库管理的地方了。<br>一般用到的仓库种类是hosted、proxy。Hosted代表宿主仓库，用来发布一些第三方不允许的组件，比如oracle驱动、比如商业软件jar包。Proxy代表代理远程的仓库，最典型的就是Maven官方中央仓库、JBoss仓库等等。如果构建的Maven项目本地仓库没有依赖包，那么就会去这个代理站点去下载，那么如果代理站点也没有此依赖包，就回去远程中央仓库下载依赖，这些中央仓库就是proxy。代理站点下载成功后再下载至本机。笔者认为，其实Maven这个自带的默认仓库一般情况下已经够大多数项目使用了。特殊情况时在配置新的仓库，指定url即可，一般熟悉ExtJS的人操作这个Nexus都没什么问题，单词不是很难，不明白的查查单词基本差不多。就是如果Sonatype公司对其做了国际化一的处理就更好了。<br>hosted   类型的仓库，内部项目的发布仓库</p>
 <p>releases 内部的模块中release模块的发布仓库</p>
 <p>snapshots 发布内部的SNAPSHOT模块的仓库</p>
 <p>3rd party 第三方依赖的仓库，这个数据通常是由内部人员自行下载之后发布上去</p>
 <p>proxy   类型的仓库，从远程中央仓库中寻找数据的仓库</p>
-<p>group   类型的仓库，组仓库用来方便我们开发人员进行设置的仓库<br>首先更改3rd party，Releases，Snapshots这三条记录，分别点击找到对应下面的Configuration，然后设置Deployment Policy为Allow Redeploy，为后面的构件提交做准备。<br><img src="../images/test4.jpg" alt="图2"><br>一般情况下，3rd party，Releases是不需要的，可以不设置。一般构件都发布成快照版本，也就是Snapshots版本的，版本取决于pom.xml中的versions版本号，后面如果带有-snapshots，那么上传后，构件就会上传到它对应的路径下面。</p>
-<p>接下来就是修改其中的配置了，如下图所示修改maven项目索引<br><img src="../images/test2.jpg" alt="图3"><br>修改远程仓库的地址，其实只要在默认的基础上面去掉https中的s就可以了。然后将Download Remote Indexes设置true，然后点击保存，然后点击Administration模块中的Scheduled Tasks，可以看到一条正在执行的任务。<br><img src="../images/test3.jpg" alt="图4"><br>这个时候就表示在下载jar了，等任务完成后，再在Artifact Search中输入我们要查找的jar。就能检索到了。OK，到这里为止，我们就算完成了了一大半了。最后就是和maven集成的问题了。</p>
+<p>group   类型的仓库，组仓库用来方便我们开发人员进行设置的仓库<br>首先更改3rd party，Releases，Snapshots这三条记录，分别点击找到对应下面的Configuration，然后设置Deployment Policy为Allow Redeploy，为后面的构件提交做准备。<br>一般情况下，3rd party，Releases是不需要的，可以不设置。一般构件都发布成快照版本，也就是Snapshots版本的，版本取决于pom.xml中的versions版本号，后面如果带有-snapshots，那么上传后，构件就会上传到它对应的路径下面。</p>
+<p>接下来就是修改其中的配置了，如下图所示修改maven项目索引<br>修改远程仓库的地址，其实只要在默认的基础上面去掉https中的s就可以了。然后将Download Remote Indexes设置true，然后点击保存，然后点击Administration模块中的Scheduled Tasks，可以看到一条正在执行的任务。<br>这个时候就表示在下载jar了，等任务完成后，再在Artifact Search中输入我们要查找的jar。就能检索到了。OK，到这里为止，我们就算完成了了一大半了。最后就是和maven集成的问题了。</p>
 <h2 id="Nexus私服库和maven集成之setting-xml文件配置"><a href="#Nexus私服库和maven集成之setting-xml文件配置" class="headerlink" title="Nexus私服库和maven集成之setting.xml文件配置"></a>Nexus私服库和maven集成之setting.xml文件配置</h2><p>首先看下setting.xml的文件配置，文件中做了详细的配置说明</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
@@ -409,6 +404,10 @@
       <ul>
         
           <li>
+            <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/">Hadoop学习(二) Hadoop生态圈</a>
           </li>
         
@@ -444,10 +443,6 @@
             <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
           </li>
         
-          <li>
-            <a href="/2016/05/10/Servlet和struts共存/">Servlet和struts共存</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -467,7 +462,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 20px; color: #800080">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 17px; color: #7f62af">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
     </div>
   </div>
 
