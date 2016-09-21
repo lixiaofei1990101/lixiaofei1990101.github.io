@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: servlet | 不合格的壞人 - BLACK_LXF个人博客</title>
+  <title>Hadoop学习(四)-HDFS架构原理 | 不合格的壞人 - BLACK_LXF个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BLACK_LXF个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="不合格的壞人">
-<meta property="og:url" content="http://yoursite.com/tags/servlet/index.html">
+  <meta name="description" content="在前面hadoop生态介绍的时候，介绍了一下hadoop的hdfs的守护进程，分别是NameNode，DataNode和SecondaryNameNode。那么它们分别是用来做什么的呢？下面我们就针对hdfs的进程做些介绍。
+NameNode工作范畴1.1、metadata用来存储元数据元数据的格式：文件名、备份数，切分的块，所在的机器等等一些文件描述性信息构成的保存在内存中的，这样查找起来就会快">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop学习(四)-HDFS架构原理">
+<meta property="og:url" content="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/index.html">
 <meta property="og:site_name" content="不合格的壞人">
-<meta property="og:description" content="BLACK_LXF个人博客">
+<meta property="og:description" content="在前面hadoop生态介绍的时候，介绍了一下hadoop的hdfs的守护进程，分别是NameNode，DataNode和SecondaryNameNode。那么它们分别是用来做什么的呢？下面我们就针对hdfs的进程做些介绍。
+NameNode工作范畴1.1、metadata用来存储元数据元数据的格式：文件名、备份数，切分的块，所在的机器等等一些文件描述性信息构成的保存在内存中的，这样查找起来就会快">
+<meta property="og:image" content="http://yoursite.com/img/hdfs_test2.png">
+<meta property="og:image" content="http://yoursite.com/img/hdfs_test3.png">
+<meta property="og:updated_time" content="2016-09-21T01:25:09.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不合格的壞人">
-<meta name="twitter:description" content="BLACK_LXF个人博客">
+<meta name="twitter:title" content="Hadoop学习(四)-HDFS架构原理">
+<meta name="twitter:description" content="在前面hadoop生态介绍的时候，介绍了一下hadoop的hdfs的守护进程，分别是NameNode，DataNode和SecondaryNameNode。那么它们分别是用来做什么的呢？下面我们就针对hdfs的进程做些介绍。
+NameNode工作范畴1.1、metadata用来存储元数据元数据的格式：文件名、备份数，切分的块，所在的机器等等一些文件描述性信息构成的保存在内存中的，这样查找起来就会快">
+<meta name="twitter:image" content="http://yoursite.com/img/hdfs_test2.png">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -93,40 +100,80 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-Hadoop学习-四-HDFS架构原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/Servlet和struts共存/" class="archive-article-date">
-  <time datetime="2016-05-10T03:39:44.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/Servlet和struts共存/">Servlet和struts共存</a>
+    <h1 class="article-title" itemprop="name">
+      Hadoop学习(四)-HDFS架构原理
     </h1>
   
 
-    </header>
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/" class="article-date">
+  <time datetime="2016-09-21T01:15:43.000Z" itemprop="datePublished">2016-9-21 周三  09:15</time>
+</a>
+    
   </div>
-</article>
-  
-  
-    </div></section>
-  
 
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+      	
+        <p>在前面hadoop生态介绍的时候，介绍了一下hadoop的hdfs的守护进程，分别是NameNode，DataNode和SecondaryNameNode。那么它们分别是用来做什么的呢？下面我们就针对hdfs的进程做些介绍。</p>
+<h2 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h2><h3 id="工作范畴"><a href="#工作范畴" class="headerlink" title="工作范畴"></a>工作范畴</h3><p>1.1、metadata用来存储元数据元数据的格式：文件名、备份数，切分的块，所在的机器等等一些文件描述性信息构成的保存在内存中的，这样查找起来就会快很多。样例:(web.log,3{blk_1,blk_2},[{blk_1:[node1,node2,node3]},{blk_2:[{node1,node3,node4}]}])。这也是客户端请求读取数据NameNode去查找DataNode的依据。<br>1.2、为了提高安全性，还要操作datanode进行横向的复制备份（数据冗余）。<br>1.3、fsimage是元数据镜像文件（保存文件系统的目录树），存储某一时段namenode内存元数据。（hdfs-site.xml的dfs.name.dir属性）。<br>1.4、edits是元数据操作日志<br>(记录每次保存fsimage之后到下次保存之间的所有hdfs操作)。<br>1.5、fstime 保存最近一次活跃点（checkpoint）的时间<br>上面这些1.3-1.5数据是保存在linux文件系统中<a id="more"></a></p>
+<h3 id="工作特点"><a href="#工作特点" class="headerlink" title="工作特点"></a>工作特点</h3><ul>
+<li>在前面已经说了namenode的metadata是保存在内存中的，用户处理读取和请求。</li>
+<li>到写请求到来时，namenode会首先写editlog到磁盘，即想edits文件写日志并成功返回。然后才会修改内存的metedata，并想客户端返回</li>
+<li>Hadoop会维护一个fsimage文件，也就是namenode中的matedata的镜像，但是fsimage不会随时与namenode内存中的metedata保持一致，而是每隔一段时间通过合并edits文件来更新内容。Secondary namenode就是用来合并fsimage和edits文件来更新namenode的metedata的<h2 id="DataNode"><a href="#DataNode" class="headerlink" title="DataNode"></a>DataNode</h2></li>
+<li>DataNode提供真实文件数据的存储服务。</li>
+<li>文件块（Block）最基本的存储单位。从2.X以后默认的每个块是128M，1.X系列默认的是64M。</li>
+<li>Replication。多副本，默认3个<h2 id="SecondaryNameNode"><a href="#SecondaryNameNode" class="headerlink" title="SecondaryNameNode"></a>SecondaryNameNode</h2>其实就是hdfs的高可靠性的解决方法（可以看作NameNode的助理），它会从namenode下载元数据信息fsimage和edits，然后合并生成新的fsimage，然后存储到内存中，并将其推送到namenode替换旧的fsimage。不建议它和namenode安装在一个节点上。具体的底层操作流程如下图所示。<br><img src="/img/hdfs_test2.png" alt="hdfs"><br><img src="/img/hdfs_test3.png" alt="hdfs"><br>上面这个过程就是保持数据同步的过程了，那么满足设么条件下就进行数据的同步呢。</li>
+<li>通过制定两次checkpoint的最大时间间隔，默认为3600秒，也就是达到这个时间后就会进行一次数据的同步。</li>
+<li>规定edits文件的最大值，一旦超过这个值则强制checkpoint不管是否达到最大时间间隔。默认是64M。<br>只要满足上述条件SecondaryNameNode就会执行数据的同步操作。<br>有关HDFS的原理可能理解起来有点费力，需要反复琢磨一下。<h2 id="hadoop心跳机制"><a href="#hadoop心跳机制" class="headerlink" title="hadoop心跳机制"></a>hadoop心跳机制</h2>当我们namenode下的从节点datanode死掉了，不能提供服务了，那么hdfs是如何保证数据的完整性的呢，这里就涉及到hadoop的心跳机制了。<br>在hadoop中主节点和从节点之间的通信是通过心跳机制实现的，如NameNode与DataNode之间，JobTracker和TaskTracker之间。所谓“心跳”是一种形象化描述，指的是持续的按照一定频率在运行，类似于心脏在永无休止的跳动。<br>当长时间没有发送心跳时，NameNode就判断DataNode的连接已经中断,不能继续工作了,就把他定性为”dead node”。NameNode会检查dead node中的副本数据，然后下达指令复制到其他的data node中。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
+      
+      
+        <a href="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/21/Hadoop学习-四-HDFS架构原理/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hadoop学习(三) 伪分布式搭建</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+
+<!-- 多说评论框 start -->
+	<div id="ds-thread" class="ds-thread" data-thread-key="2016/09/21/Hadoop学习-四-HDFS架构原理/" data-title="Hadoop学习(四)-HDFS架构原理" data-url="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/" data-author-key="233"></div>
+<!-- 多说评论框 end -->
+</section>
 </section>
         
           
@@ -155,6 +202,10 @@
     <h3 class="widget-title">最近文章 ● Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/">Hadoop学习(四)-HDFS架构原理</a>
+          </li>
         
           <li>
             <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
@@ -192,10 +243,6 @@
             <a href="/2016/05/30/Lodop打印控件使用/">Lodop打印控件使用</a>
           </li>
         
-          <li>
-            <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -205,7 +252,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签 ● Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lodop/">Lodop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/easyui/">easyui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel-导出excel-导入excel/">excel,导出excel,导入excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo常用命令/">hexo常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protobuf/">protobuf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列统计/">列统计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打印/">打印</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpc/">rpc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
     </div>
   </div>
 
@@ -215,7 +262,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 17px; color: #7f62af">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+      <a href="/tags/hadoop/" style="font-size: 18.5px; color: #7f3198">hadoop</a> <a href="/tags/java/" style="font-size: 20px; color: #800080">java</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 15.5px; color: #7e92c7">maven</a> <a href="/tags/rpc/" style="font-size: 14px; color: #7dc3de">rpc</a> <a href="/tags/tool/" style="font-size: 17px; color: #7f62af">tool</a>
     </div>
   </div>
 

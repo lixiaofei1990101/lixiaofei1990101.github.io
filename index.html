@@ -95,6 +95,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hadoop学习-四-HDFS架构原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/21/Hadoop学习-四-HDFS架构原理/">Hadoop学习(四)-HDFS架构原理</a>
+    </h1>
+  
+
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/" class="article-date">
+  <time datetime="2016-09-21T01:15:43.000Z" itemprop="datePublished">2016-9-21 周三  09:15</time>
+</a>
+    
+  </div>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在前面hadoop生态介绍的时候，介绍了一下hadoop的hdfs的守护进程，分别是NameNode，DataNode和SecondaryNameNode。那么它们分别是用来做什么的呢？下面我们就针对hdfs的进程做些介绍。</p>
+<h2 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h2><h3 id="工作范畴"><a href="#工作范畴" class="headerlink" title="工作范畴"></a>工作范畴</h3><p>1.1、metadata用来存储元数据元数据的格式：文件名、备份数，切分的块，所在的机器等等一些文件描述性信息构成的保存在内存中的，这样查找起来就会快很多。样例:(web.log,3{blk_1,blk_2},[{blk_1:[node1,node2,node3]},{blk_2:[{node1,node3,node4}]}])。这也是客户端请求读取数据NameNode去查找DataNode的依据。<br>1.2、为了提高安全性，还要操作datanode进行横向的复制备份（数据冗余）。<br>1.3、fsimage是元数据镜像文件（保存文件系统的目录树），存储某一时段namenode内存元数据。（hdfs-site.xml的dfs.name.dir属性）。<br>1.4、edits是元数据操作日志<br>(记录每次保存fsimage之后到下次保存之间的所有hdfs操作)。<br>1.5、fstime 保存最近一次活跃点（checkpoint）的时间<br>上面这些1.3-1.5数据是保存在linux文件系统中
+        
+          <p class="article-more-link">
+            <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/#main">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <a data-url="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/" data-id="citc8717y0004cokt0yexviym" class="article-share-link">分享</a>
+	  
+      
+        <a href="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/21/Hadoop学习-四-HDFS架构原理/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hadoop学习-三-伪分布式搭建" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -132,7 +181,7 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/" data-id="citb8est60000zsktibujw9vg" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/" data-id="citc871810005coktgnvjlwtl" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/20/Hadoop学习-三-伪分布式搭建/">评论</a>
@@ -180,7 +229,7 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="citb8estq0009zsktuvmh2q6b" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="citc871830006cokt87oefcgo" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/19/Hadoop学习-二-Hadoop生态圈/">评论</a>
@@ -229,7 +278,7 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="citb8estl0005zsktt9xqen1h" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="citc8717s0002coktluxiu314" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
@@ -277,61 +326,13 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="citb8esua000mzsktq1prjgh2" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="citc8718o000mcoktzekx0as1" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/12/github上传项目/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/12/github上传项目/">评论</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nexus搭建本地私服" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/09/nexus搭建本地私服/">nexus搭建本地私服</a>
-    </h1>
-  
-
-      </header>
-    
-  <div class="article-meta">
-    <a href="/2016/09/09/nexus搭建本地私服/" class="article-date">
-  <time datetime="2016-09-09T02:12:56.000Z" itemprop="datePublished">2016-9-9 周五  10:12</time>
-</a>
-    
-  </div>
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Nexus介绍"><a href="#Nexus介绍" class="headerlink" title="Nexus介绍"></a>Nexus介绍</h2><p>Nexus是常用的Maven私用服务器。一般是公司内部使用。下载地址是：<a href="http://www.sonatype.org/nexus/go，">http://www.sonatype.org/nexus/go，</a><br>Nexus常用功能是：指定私服的中央地址、将自己的Maven项目指定到私服地址、从私服下载中央库的项目索引、从私服仓库下载依赖组件、将第三方项目jar上传到私服供其他项目组使用。
-        
-          <p class="article-more-link">
-            <a href="/2016/09/09/nexus搭建本地私服/#main">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-	  
-	    <a data-url="http://yoursite.com/2016/09/09/nexus搭建本地私服/" data-id="citb8esun000tzsktl334li2i" class="article-share-link">分享</a>
-	  
-      
-        <a href="http://yoursite.com/2016/09/09/nexus搭建本地私服/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/09/nexus搭建本地私服/">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nexus/">nexus</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -375,6 +376,10 @@ export PATH=$PATH:$JAVA_HOME/bin
       <ul>
         
           <li>
+            <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/">Hadoop学习(四)-HDFS架构原理</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/20/Hadoop学习-三-伪分布式搭建/">Hadoop学习(三) 伪分布式搭建</a>
           </li>
         
@@ -410,10 +415,6 @@ export PATH=$PATH:$JAVA_HOME/bin
             <a href="/2016/05/30/Lodop打印控件使用/">Lodop打印控件使用</a>
           </li>
         
-          <li>
-            <a href="/2016/05/10/Protobuf序列化框架/">Protobuf序列化框架</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -423,7 +424,7 @@ export PATH=$PATH:$JAVA_HOME/bin
   <div class="widget-wrap">
     <h3 class="widget-title">标签 ● Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lodop/">Lodop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag/">Tag</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/easyui/">easyui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel-导出excel-导入excel/">excel,导出excel,导入excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo常用命令/">hexo常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/netty/">netty</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/protobuf/">protobuf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts/">struts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/列统计/">列统计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打印/">打印</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpc/">rpc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
     </div>
   </div>
 
@@ -433,7 +434,7 @@ export PATH=$PATH:$JAVA_HOME/bin
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Lodop/" style="font-size: 14px; color: #7dc3de">Lodop</a> <a href="/tags/Tag/" style="font-size: 14px; color: #7dc3de">Tag</a> <a href="/tags/easyui/" style="font-size: 14px; color: #7dc3de">easyui</a> <a href="/tags/excel-导出excel-导入excel/" style="font-size: 14px; color: #7dc3de">excel,导出excel,导入excel</a> <a href="/tags/github/" style="font-size: 14px; color: #7dc3de">github</a> <a href="/tags/hadoop/" style="font-size: 20px; color: #800080">hadoop</a> <a href="/tags/hexo常用命令/" style="font-size: 14px; color: #7dc3de">hexo常用命令</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 14px; color: #7dc3de">maven</a> <a href="/tags/mybatis/" style="font-size: 17px; color: #7f62af">mybatis</a> <a href="/tags/netty/" style="font-size: 14px; color: #7dc3de">netty</a> <a href="/tags/nexus/" style="font-size: 14px; color: #7dc3de">nexus</a> <a href="/tags/protobuf/" style="font-size: 14px; color: #7dc3de">protobuf</a> <a href="/tags/servlet/" style="font-size: 14px; color: #7dc3de">servlet</a> <a href="/tags/struts/" style="font-size: 14px; color: #7dc3de">struts</a> <a href="/tags/列统计/" style="font-size: 14px; color: #7dc3de">列统计</a> <a href="/tags/打印/" style="font-size: 14px; color: #7dc3de">打印</a>
+      <a href="/tags/hadoop/" style="font-size: 18.5px; color: #7f3198">hadoop</a> <a href="/tags/java/" style="font-size: 20px; color: #800080">java</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 15.5px; color: #7e92c7">maven</a> <a href="/tags/rpc/" style="font-size: 14px; color: #7dc3de">rpc</a> <a href="/tags/tool/" style="font-size: 17px; color: #7f62af">tool</a>
     </div>
   </div>
 
