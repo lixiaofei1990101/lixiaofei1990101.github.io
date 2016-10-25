@@ -95,6 +95,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hadoop学习-五-MapReduce架构原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/">Hadoop学习(五)-MapReduce架构原理</a>
+    </h1>
+  
+
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/" class="article-date">
+  <time datetime="2016-10-25T03:11:16.000Z" itemprop="datePublished">2016-10-25 周二  11:11</time>
+</a>
+    
+  </div>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>hadoop主要是用于应对海量数据的存储和计算的，前面hdfs文件系统，则重点是用于海量数据的存储。那么有了这么多数据，我们又该怎么在这些数据里面来提取我们需要的信息呢？这个时候hadoop中出现了一个非常重要的成员MapReduce。<br>MapReduce是一种编程模型，用于大规模数据集(大于1TB)的并行运算。注意这个并行运算，它不再是我们传统意义上的串行计算，它可以在不同的进程中进行并行的运算。概念”Map(映射)”和”Reduce(归约)”，是它们的主要思想，都是从函数式编程语言里借来的，还有从矢量编程语言里借来的特性。它极大地方便了编程人员在不会分布式并行编程的情况下，将自己的程序运行在分布式系统上。 当前的软件实现是指定一个Map(映射)函数，用来把一组键值对映射成一组新的键值对，指定并发的Reduce(归约)函数，用来保证所有映射的键值对中的每一个共享相同的键组。<br>下面就MapReduce内部执行过程和原理做下介绍。
+        
+          <p class="article-more-link">
+            <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/#main">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <a data-url="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/" data-id="ciuoxcq6v0004j0ktwnk8i47x" class="article-share-link">分享</a>
+	  
+      
+        <a href="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/10/25/Hadoop学习-五-MapReduce架构原理/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Hadoop学习-四-HDFS架构原理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -129,7 +177,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/" data-id="citc8717y0004cokt0yexviym" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/" data-id="ciuoxcq730005j0ktukmlzqja" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/21/Hadoop学习-四-HDFS架构原理/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/21/Hadoop学习-四-HDFS架构原理/">评论</a>
@@ -181,7 +229,7 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/" data-id="citc871810005coktgnvjlwtl" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/" data-id="ciuoxcq760008j0ktco5uaj4e" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/20/Hadoop学习-三-伪分布式搭建/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/20/Hadoop学习-三-伪分布式搭建/">评论</a>
@@ -229,7 +277,7 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="citc871830006cokt87oefcgo" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/" data-id="ciuoxcq6q0003j0kttk8jup7m" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/19/Hadoop学习-二-Hadoop生态圈/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/19/Hadoop学习-二-Hadoop生态圈/">评论</a>
@@ -278,61 +326,13 @@ export PATH=$PATH:$JAVA_HOME/bin
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="citc8717s0002coktluxiu314" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="ciuoxcq6f0001j0ktf3x5x1fp" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-github上传项目" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/12/github上传项目/">github上传项目</a>
-    </h1>
-  
-
-      </header>
-    
-  <div class="article-meta">
-    <a href="/2016/09/12/github上传项目/" class="article-date">
-  <time datetime="2016-09-12T01:28:10.000Z" itemprop="datePublished">2016-9-12 周一  09:28</time>
-</a>
-    
-  </div>
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Github介绍"><a href="#Github介绍" class="headerlink" title="Github介绍"></a>Github介绍</h2><p>Github是一个代码托管平台和开发者社区，开发者可以在Github上创建自己的开源项目并与其他开发者协作编码。开源项目可以免费托管，私有项目需付费。官方网址是:<span><a href="https://github.com/">https://github.com/</a></span>。一开始的时候，自己编写的东西一直苦恼没办法在公司和家里同步，从今年的四五月份为了搭建自己的个人博客才开始接触github。下面就我本地项目如果推送到github稍微做下介绍。<br>首先下载git版本控制器，并安装，下载路径:<span><a href="https://git-for-windows.github.io/">https://git-for-windows.github.io/</a></span>我这里不多介绍，百度一下很多。然后到官方网站注册一个自己的Github账号。然后新建一个项目，这里也就不做过多的演示了。账号注册号了，项目建好后。下面就是具体的操作过程了。
-        
-          <p class="article-more-link">
-            <a href="/2016/09/12/github上传项目/#main">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-	  
-	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="citc8718o000mcoktzekx0as1" class="article-share-link">分享</a>
-	  
-      
-        <a href="http://yoursite.com/2016/09/12/github上传项目/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/12/github上传项目/">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/">tool</a></li></ul>
 
     </footer>
   </div>
@@ -376,6 +376,10 @@ export PATH=$PATH:$JAVA_HOME/bin
       <ul>
         
           <li>
+            <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/">Hadoop学习(五)-MapReduce架构原理</a>
+          </li>
+        
+          <li>
             <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/">Hadoop学习(四)-HDFS架构原理</a>
           </li>
         
@@ -409,10 +413,6 @@ export PATH=$PATH:$JAVA_HOME/bin
         
           <li>
             <a href="/2016/05/30/easyui-列统计/">easyui-列统计</a>
-          </li>
-        
-          <li>
-            <a href="/2016/05/30/Lodop打印控件使用/">Lodop打印控件使用</a>
           </li>
         
       </ul>

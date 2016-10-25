@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hadoop学习(一) Linux环境配置 | 不合格的壞人 - BLACK_LXF个人博客</title>
+  <title>Archives: 2016/10 | 不合格的壞人 - BLACK_LXF个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop学习(一) Linux环境配置">
-<meta property="og:url" content="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/index.html">
+  <meta name="description" content="BLACK_LXF个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="不合格的壞人">
+<meta property="og:url" content="http://yoursite.com/archives/2016/10/index.html">
 <meta property="og:site_name" content="不合格的壞人">
-<meta property="og:description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
-<meta property="og:updated_time" content="2016-09-18T09:11:26.933Z">
+<meta property="og:description" content="BLACK_LXF个人博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop学习(一) Linux环境配置">
-<meta name="twitter:description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
+<meta name="twitter:title" content="不合格的壞人">
+<meta name="twitter:description" content="BLACK_LXF个人博客">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -97,133 +93,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hadoop学习-一-Linux环境配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Hadoop学习(一) Linux环境配置
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/" class="archive-article-date">
+  <time datetime="2016-10-25T03:11:16.000Z" itemprop="datePublished">10月 25</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/">Hadoop学习(五)-MapReduce架构原理</a>
     </h1>
   
 
-      </header>
-    
-  <div class="article-meta">
-    <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/" class="article-date">
-  <time datetime="2016-09-18T07:11:49.000Z" itemprop="datePublished">2016-9-18 周日  15:11</time>
-</a>
-    
+    </header>
   </div>
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-      	
-        <p>个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。</p>
-<h2 id="关闭linux防火墙"><a href="#关闭linux防火墙" class="headerlink" title="关闭linux防火墙"></a>关闭linux防火墙</h2><h4 id="禁用系统默认防火墙"><a href="#禁用系统默认防火墙" class="headerlink" title="禁用系统默认防火墙"></a>禁用系统默认防火墙</h4><p>因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁止掉centos7的默认防火墙<br>1、systemctl stop firewalld.service   停止firewall。<br>2、systemctl disable firewalld.service   禁止firewall开机启动。<a id="more"></a></p>
-<h4 id="安装iptable防火墙"><a href="#安装iptable防火墙" class="headerlink" title="安装iptable防火墙"></a>安装iptable防火墙</h4><p>yum install -y iptable，如下图所示表示已经下载好了iptable防火墙的安装包，接下来就是安装了。<br>yum install iptables-services 执行iptable的安装如下，一路逮下去，直接Y。<br>完成iptable的安装以后，进入到/etc/sysconfig/下面可以看到一个iptables的文件，这里面就是配置的防火墙一些进站还有端口的限制，简单的可以参考下面的一些设置，来编辑iptables，然后保存就OK了。</p>
-<h4 id="防火墙设置规则"><a href="#防火墙设置规则" class="headerlink" title="防火墙设置规则"></a>防火墙设置规则</h4><pre><code>#查看iptables现有规则
-iptables -L -n
-#先允许所有,不然有可能会杯具
-iptables -P INPUT ACCEPT
-#清空所有默认规则
-iptables -F
-#清空所有自定义规则
-iptables -X
-#所有计数器归0
-iptables -Z
-#允许来自于lo接口的数据包(本地访问)
-iptables -A INPUT -i lo -j ACCEPT
-#开放22端口
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-#开放21端口(FTP)
-iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-#开放80端口(HTTP)
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-#开放443端口(HTTPS)
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-#允许ping
-iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
-#允许接受本机请求之后的返回数据 RELATED,是为FTP设置的
-iptables -A INPUT -m state --state  RELATED,ESTABLISHED -j ACCEPT
-#其他入站一律丢弃
-iptables -P INPUT DROP
-#所有出站一律绿灯
-iptables -P OUTPUT ACCEPT
-#所有转发一律丢弃
-iptables -P FORWARD DROP
-#如果要添加内网ip信任（接受其所有TCP请求）
-iptables -A INPUT -p tcp -s 45.96.174.68 -j ACCEPT
-#过滤所有非以上规则的请求
-iptables -P INPUT DROP
-#要封停一个IP，使用下面这条命令：
-iptables -I INPUT -s ***.***.***.*** -j DROP
-#要解封一个IP，使用下面这条命令:
-iptables -D INPUT -s ***.***.***.*** -j DROP
-</code></pre><h4 id="iptable防火墙的常用操作"><a href="#iptable防火墙的常用操作" class="headerlink" title="iptable防火墙的常用操作"></a>iptable防火墙的常用操作</h4><pre><code>#注册iptables服务
-#相当于以前的chkconfig iptables on
-systemctl  enable  iptables.service
-#开启服务
-systemctl  start  iptables.service
-#查看状态
-systemctl  status  iptables.service
-#禁用防火墙启动
-Systemctl  disable  iptables.service
-</code></pre><p>OK！到这里我相信防火墙应该是被你关闭了，当然如果你使用的是比如6.4等其他低版本的，操作起来就方便很多了，直接就是service iptables  status 等等。这个地方不知道的可以百度一下，有很多相关的介绍，这里我就不一一介绍了。OK！咱们接着往下看。</p>
-<h2 id="网络的设置"><a href="#网络的设置" class="headerlink" title="网络的设置"></a>网络的设置</h2><p>在我们的虚拟机安装完成以后，我们打开我们的网络设置可以看到多出了两块网卡。</p>
-<h4 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h4><p>在你电脑可以连接网络的时候，采用NAT模式，共享主机的IP地址。<br>系统安装默认就是这种模式的，然后我们在linux系统中查看IP地址（192.168.222.129），这里走的是主机连接网络的公网IP地址。接着在windows的dos操作平台里面ping到IP地址，可以看到网络已经共享。<br>2.2.2、无网络的情况，则采用仅主机模式，这样就能在专用网络内连接虚拟机了 ，这种情况下，不需要我们的电脑连接网络，虚拟机就能和主机之间建立网络连接。但是没法上网，因为你建立的是虚拟机和主机之间的连接。<br>这个时候，我们再从新启动虚拟机，查看IP地址，变成了（192.168.77.128），其中这里走的是我们windows的IP地址。咱们ping一下，可以看到是正常的。其实说白了就是局域网内计算机之间实现网络的通讯。为了方便，在接下来的学习中都采用第一种方式建立连接（注意：在我们使用这种方式的时候，一定要启用对应的网卡）</p>
-<h4 id="静态IP地址设置"><a href="#静态IP地址设置" class="headerlink" title="静态IP地址设置"></a>静态IP地址设置</h4><p>如下图所示，我们可以看到，虚拟机的IP地址是自动获取的，这样的话，在下次我们启动系统的时候，IP地址可能会发生变化。建议设置成静态的IP地址。<br>注意：这里的地址必须保持linux的网卡和windows上的虚拟网卡在同一网段<br>这里是通过桌面的形式来修改我们的IP地址，当然也可以使用命令的方式，进入到我们/etc/sysconfig/network-scripts目录下面可以看到一个ifcfg-eno16777736文件，这个文件就是网络的配置文件了，可以通过修改里面的内容来编辑网络。OK！到这里就算是完成了对静态IP地址的设置了</p>
-<h2 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h2><p>hostnamectl set-hostname  &lt;自定义的主机名&gt;</p>
-<h2 id="配置域名映射"><a href="#配置域名映射" class="headerlink" title="配置域名映射"></a>配置域名映射</h2><p>配置主机的IP地址和主机名的映射，其实就是配置本地的DNS，这样通过主机名就能访问到我们的主机了，不需要去记对应的IP地址。修改/etc/hosts文件，将IP和主机名对应就好了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-	  
-	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
-      
-      
-        <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hadoop学习(二) Hadoop生态圈
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/09/12/github上传项目/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">github上传项目</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<section id="comments">
-
-<!-- 多说评论框 start -->
-	<div id="ds-thread" class="ds-thread" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/" data-title="Hadoop学习(一) Linux环境配置" data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-author-key="233"></div>
-<!-- 多说评论框 end -->
-</section>
 </section>
         
           

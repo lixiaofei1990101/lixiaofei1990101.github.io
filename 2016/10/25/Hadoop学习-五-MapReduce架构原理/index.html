@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hadoop学习(一) Linux环境配置 | 不合格的壞人 - BLACK_LXF个人博客</title>
+  <title>Hadoop学习(五)-MapReduce架构原理 | 不合格的壞人 - BLACK_LXF个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
+  <meta name="description" content="概述hadoop主要是用于应对海量数据的存储和计算的，前面hdfs文件系统，则重点是用于海量数据的存储。那么有了这么多数据，我们又该怎么在这些数据里面来提取我们需要的信息呢？这个时候hadoop中出现了一个非常重要的成员MapReduce。MapReduce是一种编程模型，用于大规模数据集(大于1TB)的并行运算。注意这个并行运算，它不再是我们传统意义上的串行计算，它可以在不同的进程中进行并行的运">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop学习(一) Linux环境配置">
-<meta property="og:url" content="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/index.html">
+<meta property="og:title" content="Hadoop学习(五)-MapReduce架构原理">
+<meta property="og:url" content="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/index.html">
 <meta property="og:site_name" content="不合格的壞人">
-<meta property="og:description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
-<meta property="og:updated_time" content="2016-09-18T09:11:26.933Z">
+<meta property="og:description" content="概述hadoop主要是用于应对海量数据的存储和计算的，前面hdfs文件系统，则重点是用于海量数据的存储。那么有了这么多数据，我们又该怎么在这些数据里面来提取我们需要的信息呢？这个时候hadoop中出现了一个非常重要的成员MapReduce。MapReduce是一种编程模型，用于大规模数据集(大于1TB)的并行运算。注意这个并行运算，它不再是我们传统意义上的串行计算，它可以在不同的进程中进行并行的运">
+<meta property="og:image" content="http://yoursite.com/img/mapreduce-test1.png">
+<meta property="og:image" content="http://yoursite.com/img/mapreduce-test2.png">
+<meta property="og:updated_time" content="2016-10-25T03:23:20.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop学习(一) Linux环境配置">
-<meta name="twitter:description" content="个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。
-关闭linux防火墙禁用系统默认防火墙因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁">
+<meta name="twitter:title" content="Hadoop学习(五)-MapReduce架构原理">
+<meta name="twitter:description" content="概述hadoop主要是用于应对海量数据的存储和计算的，前面hdfs文件系统，则重点是用于海量数据的存储。那么有了这么多数据，我们又该怎么在这些数据里面来提取我们需要的信息呢？这个时候hadoop中出现了一个非常重要的成员MapReduce。MapReduce是一种编程模型，用于大规模数据集(大于1TB)的并行运算。注意这个并行运算，它不再是我们传统意义上的串行计算，它可以在不同的进程中进行并行的运">
+<meta name="twitter:image" content="http://yoursite.com/img/mapreduce-test1.png">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -97,7 +97,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Hadoop学习-一-Linux环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Hadoop学习-五-MapReduce架构原理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -105,15 +105,15 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hadoop学习(一) Linux环境配置
+      Hadoop学习(五)-MapReduce架构原理
     </h1>
   
 
       </header>
     
   <div class="article-meta">
-    <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/" class="article-date">
-  <time datetime="2016-09-18T07:11:49.000Z" itemprop="datePublished">2016-9-18 周日  15:11</time>
+    <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/" class="article-date">
+  <time datetime="2016-10-25T03:11:16.000Z" itemprop="datePublished">2016-10-25 周二  11:11</time>
 </a>
     
   </div>
@@ -122,71 +122,19 @@
       
         <!-- Table of Contents -->
       	
-        <p>个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。</p>
-<h2 id="关闭linux防火墙"><a href="#关闭linux防火墙" class="headerlink" title="关闭linux防火墙"></a>关闭linux防火墙</h2><h4 id="禁用系统默认防火墙"><a href="#禁用系统默认防火墙" class="headerlink" title="禁用系统默认防火墙"></a>禁用系统默认防火墙</h4><p>因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁止掉centos7的默认防火墙<br>1、systemctl stop firewalld.service   停止firewall。<br>2、systemctl disable firewalld.service   禁止firewall开机启动。<a id="more"></a></p>
-<h4 id="安装iptable防火墙"><a href="#安装iptable防火墙" class="headerlink" title="安装iptable防火墙"></a>安装iptable防火墙</h4><p>yum install -y iptable，如下图所示表示已经下载好了iptable防火墙的安装包，接下来就是安装了。<br>yum install iptables-services 执行iptable的安装如下，一路逮下去，直接Y。<br>完成iptable的安装以后，进入到/etc/sysconfig/下面可以看到一个iptables的文件，这里面就是配置的防火墙一些进站还有端口的限制，简单的可以参考下面的一些设置，来编辑iptables，然后保存就OK了。</p>
-<h4 id="防火墙设置规则"><a href="#防火墙设置规则" class="headerlink" title="防火墙设置规则"></a>防火墙设置规则</h4><pre><code>#查看iptables现有规则
-iptables -L -n
-#先允许所有,不然有可能会杯具
-iptables -P INPUT ACCEPT
-#清空所有默认规则
-iptables -F
-#清空所有自定义规则
-iptables -X
-#所有计数器归0
-iptables -Z
-#允许来自于lo接口的数据包(本地访问)
-iptables -A INPUT -i lo -j ACCEPT
-#开放22端口
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-#开放21端口(FTP)
-iptables -A INPUT -p tcp --dport 21 -j ACCEPT
-#开放80端口(HTTP)
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-#开放443端口(HTTPS)
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-#允许ping
-iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
-#允许接受本机请求之后的返回数据 RELATED,是为FTP设置的
-iptables -A INPUT -m state --state  RELATED,ESTABLISHED -j ACCEPT
-#其他入站一律丢弃
-iptables -P INPUT DROP
-#所有出站一律绿灯
-iptables -P OUTPUT ACCEPT
-#所有转发一律丢弃
-iptables -P FORWARD DROP
-#如果要添加内网ip信任（接受其所有TCP请求）
-iptables -A INPUT -p tcp -s 45.96.174.68 -j ACCEPT
-#过滤所有非以上规则的请求
-iptables -P INPUT DROP
-#要封停一个IP，使用下面这条命令：
-iptables -I INPUT -s ***.***.***.*** -j DROP
-#要解封一个IP，使用下面这条命令:
-iptables -D INPUT -s ***.***.***.*** -j DROP
-</code></pre><h4 id="iptable防火墙的常用操作"><a href="#iptable防火墙的常用操作" class="headerlink" title="iptable防火墙的常用操作"></a>iptable防火墙的常用操作</h4><pre><code>#注册iptables服务
-#相当于以前的chkconfig iptables on
-systemctl  enable  iptables.service
-#开启服务
-systemctl  start  iptables.service
-#查看状态
-systemctl  status  iptables.service
-#禁用防火墙启动
-Systemctl  disable  iptables.service
-</code></pre><p>OK！到这里我相信防火墙应该是被你关闭了，当然如果你使用的是比如6.4等其他低版本的，操作起来就方便很多了，直接就是service iptables  status 等等。这个地方不知道的可以百度一下，有很多相关的介绍，这里我就不一一介绍了。OK！咱们接着往下看。</p>
-<h2 id="网络的设置"><a href="#网络的设置" class="headerlink" title="网络的设置"></a>网络的设置</h2><p>在我们的虚拟机安装完成以后，我们打开我们的网络设置可以看到多出了两块网卡。</p>
-<h4 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h4><p>在你电脑可以连接网络的时候，采用NAT模式，共享主机的IP地址。<br>系统安装默认就是这种模式的，然后我们在linux系统中查看IP地址（192.168.222.129），这里走的是主机连接网络的公网IP地址。接着在windows的dos操作平台里面ping到IP地址，可以看到网络已经共享。<br>2.2.2、无网络的情况，则采用仅主机模式，这样就能在专用网络内连接虚拟机了 ，这种情况下，不需要我们的电脑连接网络，虚拟机就能和主机之间建立网络连接。但是没法上网，因为你建立的是虚拟机和主机之间的连接。<br>这个时候，我们再从新启动虚拟机，查看IP地址，变成了（192.168.77.128），其中这里走的是我们windows的IP地址。咱们ping一下，可以看到是正常的。其实说白了就是局域网内计算机之间实现网络的通讯。为了方便，在接下来的学习中都采用第一种方式建立连接（注意：在我们使用这种方式的时候，一定要启用对应的网卡）</p>
-<h4 id="静态IP地址设置"><a href="#静态IP地址设置" class="headerlink" title="静态IP地址设置"></a>静态IP地址设置</h4><p>如下图所示，我们可以看到，虚拟机的IP地址是自动获取的，这样的话，在下次我们启动系统的时候，IP地址可能会发生变化。建议设置成静态的IP地址。<br>注意：这里的地址必须保持linux的网卡和windows上的虚拟网卡在同一网段<br>这里是通过桌面的形式来修改我们的IP地址，当然也可以使用命令的方式，进入到我们/etc/sysconfig/network-scripts目录下面可以看到一个ifcfg-eno16777736文件，这个文件就是网络的配置文件了，可以通过修改里面的内容来编辑网络。OK！到这里就算是完成了对静态IP地址的设置了</p>
-<h2 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h2><p>hostnamectl set-hostname  &lt;自定义的主机名&gt;</p>
-<h2 id="配置域名映射"><a href="#配置域名映射" class="headerlink" title="配置域名映射"></a>配置域名映射</h2><p>配置主机的IP地址和主机名的映射，其实就是配置本地的DNS，这样通过主机名就能访问到我们的主机了，不需要去记对应的IP地址。修改/etc/hosts文件，将IP和主机名对应就好了。</p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>hadoop主要是用于应对海量数据的存储和计算的，前面hdfs文件系统，则重点是用于海量数据的存储。那么有了这么多数据，我们又该怎么在这些数据里面来提取我们需要的信息呢？这个时候hadoop中出现了一个非常重要的成员MapReduce。<br>MapReduce是一种编程模型，用于大规模数据集(大于1TB)的并行运算。注意这个并行运算，它不再是我们传统意义上的串行计算，它可以在不同的进程中进行并行的运算。概念”Map(映射)”和”Reduce(归约)”，是它们的主要思想，都是从函数式编程语言里借来的，还有从矢量编程语言里借来的特性。它极大地方便了编程人员在不会分布式并行编程的情况下，将自己的程序运行在分布式系统上。 当前的软件实现是指定一个Map(映射)函数，用来把一组键值对映射成一组新的键值对，指定并发的Reduce(归约)函数，用来保证所有映射的键值对中的每一个共享相同的键组。<br>下面就MapReduce内部执行过程和原理做下介绍。<a id="more"></a></p>
+<h2 id="MapReduce作业运行流程"><a href="#MapReduce作业运行流程" class="headerlink" title="MapReduce作业运行流程"></a>MapReduce作业运行流程</h2><p><img src="/img/mapreduce-test1.png" alt="hadoop"><br>1、在客户端启动一个作业。<br>2、向NodeManager请求一个Job ID。<br>3、将运行作业所需要的资源文件复制到HDFS上，包括MapReduce程序打包的JAR文件、配置文件和客户端计算所得的输入划分信息。这些文件都存放在NodeManager专门为该作业创建的文件夹中。文件夹名为该作业的Job ID。JAR文件默认会有10个副本（mapred.submit.replication属性控制）；输入划分信息告诉了NodeManager应该为这个作业启动多少个map任务等信息。<br>4、NodeManager接收到作业后，将其放在一个作业队列里，等待作业调度器对其进行调度（这里是不是很像微机中的进程调度呢，呵呵），当作业调度器根据自己的调度算法调度到该作业时，会根据输入划分信息为每个划分创建一个map任务，并将map任务分配给ResourceManager执行。对于map和reduce任务，ResourceManager根据主机核的数量和内存的大小有固定数量的map槽和reduce槽。这里需要强调的是：map任务不是随随便便地分配给某个ResourceManager的，这里有个概念叫：数据本地化（Data-Local）。意思是：将map任务分配给含有该map处理的数据块的ResourceManager上，同时将程序JAR包复制到该ResourceManager上来运行，这叫“运算移动，数据不移动”。而分配reduce任务时并不考虑数据本地化。<br>5、ResourceManager每隔一段时间会给NodeManager发送一个心跳，告诉NodeManager它依然在运行，同时心跳中还携带着很多的信息，比如当前map任务完成的进度等信息。当NodeManager收到作业的最后一个任务完成信息时，便把该作业设置成“成功”。当JobClient查询状态时，它将得知任务已完成，便显示一条消息给用户。<br>以上是在客户端NodeManager、ResourceManager的层次来分析MapReduce的工作原理的，下面我们再细致一点，从map任务和reduce任务的层次来分析分析吧。</p>
+<h2 id="Map、Reduce任务中Shuffle和排序的过程"><a href="#Map、Reduce任务中Shuffle和排序的过程" class="headerlink" title="Map、Reduce任务中Shuffle和排序的过程"></a>Map、Reduce任务中Shuffle和排序的过程</h2><p><img src="/img/mapreduce-test2.png" alt="hadoop"><br>流程分析<br>1、每个输入分片会让一个map任务来处理，默认情况下，以HDFS的一个块的大小（默认为64M）为一个分片，当然我们也可以设置块的大小。map输出的结果会暂且放在一个环形内存缓冲区中（该缓冲区的大小默认为100M，由io.sort.mb属性控制），当该缓冲区快要溢出时（默认为缓冲区大小的80%，由io.sort.spill.percent属性控制），会在本地文件系统中创建一个溢出文件，将该缓冲区中的数据写入这个文件。<br>2、在写入磁盘之前，线程首先根据reduce任务的数目将数据划分为相同数目的分区，也就是一个reduce任务对应一个分区的数据。这样做是为了避免有些reduce任务分配到大量数据，而有些reduce任务却分到很少数据，甚至没有分到数据的尴尬局面。其实分区就是对数据进行hash的过程。然后对每个分区中的数据进行排序，如果此时设置了Combiner，将排序后的结果进行Combia操作，这样做的目的是让尽可能少的数据写入到磁盘。<br>3、当map任务输出最后一个记录时，可能会有很多的溢出文件，这时需要将这些文件合并。合并的过程中会不断地进行排序和combia操作，目的有两个：1.尽量减少每次写入磁盘的数据量；2.尽量减少下一复制阶段网络传输的数据量。最后合并成了一个已分区且已排序的文件。为了减少网络传输的数据量，这里可以将数据压缩，只要将mapred.compress.map.out设置为true就可以了。</p>
+<p>4、将分区中的数据拷贝给相对应的reduce任务。有人可能会问：分区中的数据怎么知道它对应的reduce是哪个呢？其实map任务一直和其父NodeManager保持联系，而NodeManager又一直和ResourceManager保持心跳。所以ResourceManager中保存了整个集群中的宏观信息。只要reduce任务向ResourceManager获取对应的map输出位置就ok了哦。<br>到这里，map端就分析完了。那到底什么是Shuffle呢？Shuffle的中文意思是“洗牌”，如果我们这样看：一个map产生的数据，结果通过hash过程分区却分配给了不同的reduce任务，其实就是一个对数据洗牌的过程。<br>5、Reduce会接收到不同map任务传来的数据，并且每个map传来的数据都是有序的。如果reduce端接受的数据量相当小，则直接存储在内存中（缓冲区大小由mapred.job.shuffle.input.buffer.percent属性控制，表示用作此用途的堆空间的百分比），如果数据量超过了该缓冲区大小的一定比例（由mapred.job.shuffle.merge.percent决定），则对数据合并后溢写到磁盘中。<br>6、随着溢写文件的增多，后台线程会将它们合并成一个更大的有序的文件，这样做是为了给后面的合并节省时间。其实不管在map端还是reduce端，MapReduce都是反复地执行排序，合并操作，现在终于明白了有些人为什么会说：排序是hadoop的灵魂。<br>7、合并的过程中会产生许多的中间文件（写入磁盘了），但MapReduce会让写入磁盘的数据尽可能地少，并且最后一次合并的结果并没有写入磁盘，而是直接输入到reduce函数。</p>
 
       
     </div>
     <footer class="article-footer">
 	  
-	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
+	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
       
       
-        <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
+        <a href="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/10/25/Hadoop学习-五-MapReduce架构原理/">评论</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
@@ -197,19 +145,10 @@ Systemctl  disable  iptables.service
     
 <nav id="article-nav">
   
-    <a href="/2016/09/19/Hadoop学习-二-Hadoop生态圈/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hadoop学习(二) Hadoop生态圈
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/09/12/github上传项目/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/09/21/Hadoop学习-四-HDFS架构原理/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">github上传项目</div>
+      <div class="article-nav-title">Hadoop学习(四)-HDFS架构原理</div>
     </a>
   
 </nav>
@@ -221,7 +160,7 @@ Systemctl  disable  iptables.service
 <section id="comments">
 
 <!-- 多说评论框 start -->
-	<div id="ds-thread" class="ds-thread" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/" data-title="Hadoop学习(一) Linux环境配置" data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-author-key="233"></div>
+	<div id="ds-thread" class="ds-thread" data-thread-key="2016/10/25/Hadoop学习-五-MapReduce架构原理/" data-title="Hadoop学习(五)-MapReduce架构原理" data-url="http://yoursite.com/2016/10/25/Hadoop学习-五-MapReduce架构原理/" data-author-key="233"></div>
 <!-- 多说评论框 end -->
 </section>
 </section>
