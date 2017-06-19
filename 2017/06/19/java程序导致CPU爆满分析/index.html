@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: tool | 不合格的壞人 - BLACK_LXF个人博客</title>
+  <title>java程序导致CPU爆满分析 | 不合格的壞人 - BLACK_LXF个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BLACK_LXF个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="不合格的壞人">
-<meta property="og:url" content="http://yoursite.com/tags/tool/index.html">
+  <meta name="description" content="在我们的java程序中，偶尔我们会碰到一些因为代码逻辑编写错误或者脏数据的情况，导致程序死循环的那种情况，从而导致CPU报表的情况，下面就针对我们java程序中进程日志，进行分析，查找有可能导致我们CPU报表的原因，后续如遇到相同的问题，可以依据此方法查找相关问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java程序导致CPU爆满分析">
+<meta property="og:url" content="http://yoursite.com/2017/06/19/java程序导致CPU爆满分析/index.html">
 <meta property="og:site_name" content="不合格的壞人">
-<meta property="og:description" content="BLACK_LXF个人博客">
+<meta property="og:description" content="在我们的java程序中，偶尔我们会碰到一些因为代码逻辑编写错误或者脏数据的情况，导致程序死循环的那种情况，从而导致CPU报表的情况，下面就针对我们java程序中进程日志，进行分析，查找有可能导致我们CPU报表的原因，后续如遇到相同的问题，可以依据此方法查找相关问题。">
+<meta property="og:image" content="http://yoursite.com/img/process_explorer_1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/process_explorer_2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/process_explorer_3.jpg">
+<meta property="og:image" content="http://yoursite.com/img/process_explorer_4.jpg">
+<meta property="og:updated_time" content="2017-06-19T08:27:42.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不合格的壞人">
-<meta name="twitter:description" content="BLACK_LXF个人博客">
+<meta name="twitter:title" content="java程序导致CPU爆满分析">
+<meta name="twitter:description" content="在我们的java程序中，偶尔我们会碰到一些因为代码逻辑编写错误或者脏数据的情况，导致程序死循环的那种情况，从而导致CPU报表的情况，下面就针对我们java程序中进程日志，进行分析，查找有可能导致我们CPU报表的原因，后续如遇到相同的问题，可以依据此方法查找相关问题。">
+<meta name="twitter:image" content="http://yoursite.com/img/process_explorer_1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="不合格的壞人" type="application/atom+xml">
   
@@ -93,78 +99,69 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-java程序导致CPU爆满分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/12/github上传项目/" class="archive-article-date">
-  <time datetime="2016-09-12T01:28:10.000Z" itemprop="datePublished">9月 12</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/12/github上传项目/">github上传项目</a>
+    <h1 class="article-title" itemprop="name">
+      java程序导致CPU爆满分析
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/30/Lodop打印控件使用/" class="archive-article-date">
-  <time datetime="2016-05-30T07:17:09.000Z" itemprop="datePublished">5月 30</time>
+  <div class="article-meta">
+    <a href="/2017/06/19/java程序导致CPU爆满分析/" class="article-date">
+  <time datetime="2017-06-19T07:15:13.000Z" itemprop="datePublished">2017-6-19 周一  15:15</time>
 </a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/30/Lodop打印控件使用/">Lodop打印控件使用</a>
-    </h1>
-  
-
-    </header>
+    
   </div>
-</article>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+      	
+        <p>在我们的java程序中，偶尔我们会碰到一些因为代码逻辑编写错误或者脏数据的情况，导致程序死循环的那种情况，从而导致CPU报表的情况，下面就针对我们java程序中进程日志，进行分析，查找有可能导致我们CPU报表的原因，后续如遇到相同的问题，可以依据此方法查找相关问题。<a id="more"></a><br>首先呢，将我们的程序运行起来，然后下次一个系统监控的程序，例如微软的Process Explorer，<a href="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx" target="_blank" rel="external">下载地址</a>，方便我们能直观看到我们的电脑内存使用情况。然后模拟我们web程序端的请求后台。<br>接下来就是定位我们的问题了，当我们的tomcat运行起来以后，我们可以再我们的监控平台看到如下图这样一个进程<br><img src="/img/process_explorer_1.jpg" alt="process1"><br>然后在控制台选中这个进程做如下两图的操作<br><img src="/img/process_explorer_2.jpg" alt="process2"><br><img src="/img/process_explorer_3.jpg" alt="process3"><br>通过如上的操作，我们就很容易的发现了，线程id为12732的有问题。<br>接下来我们用dos命令：jstack -l 11368 &gt; G:/11368.stack。这样在我们的G盘就可以生成我们进程对应的快照了。我们知道在快照文件中使用的都是16进制的字符，最后是将我们的线程id为12732字符转成16进制，转换后的值为31BC，然后将31BC在我们导出的快照文件中搜索，可以搜索到如下图所示的部分<br><img src="/img/process_explorer_4.jpg" alt="process4"><br>然后顺藤摸瓜，找到我们相关的业务代码部分，最后发现，是因为脏数据导致程序进入了死循环的状态，从而导致CPU爆的情况出现。此次问题的解决思路大概就这样，希望对万难得程序猿有所帮助。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <div class="bdsharebuttonbox"><a href="http://yoursite.com/2017/06/19/java程序导致CPU爆满分析/">分享到：</a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook">Facebook</a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter">Twitter</a><a href="#" class="bds_more" data-cmd="more">其他平台</a></div>
+      
+      
+        <a href="http://yoursite.com/2017/06/19/java程序导致CPU爆满分析/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2017/06/19/java程序导致CPU爆满分析/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dump/">dump</a></li></ul>
+
+    </footer>
+  </div>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/07/hexo常用命令/" class="archive-article-date">
-  <time datetime="2016-05-07T09:05:05.000Z" itemprop="datePublished">5月 7</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/07/hexo常用命令/">hexo常用命令</a>
-    </h1>
   
+    <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hadoop学习(五)-MapReduce架构原理</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
+
+<section id="comments">
+
+<!-- 多说评论框 start -->
+	<div id="ds-thread" class="ds-thread" data-thread-key="2017/06/19/java程序导致CPU爆满分析/" data-title="java程序导致CPU爆满分析" data-url="http://yoursite.com/2017/06/19/java程序导致CPU爆满分析/" data-author-key="233"></div>
+<!-- 多说评论框 end -->
+</section>
 </section>
         
           

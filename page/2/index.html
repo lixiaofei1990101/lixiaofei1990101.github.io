@@ -95,6 +95,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hadoop学习-一-Linux环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/18/Hadoop学习-一-Linux环境配置/">Hadoop学习(一) Linux环境配置</a>
+    </h1>
+  
+
+      </header>
+    
+  <div class="article-meta">
+    <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/" class="article-date">
+  <time datetime="2016-09-18T07:11:49.000Z" itemprop="datePublished">2016-9-18 周日  15:11</time>
+</a>
+    
+  </div>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>个人一般都不会有多台电脑给你去搭建什么集群，只能选择用虚拟机了。我自己用的是VMware来安装的centos7的linux系统具体的步骤，可以去网上参考一下，不是很复杂，稍微细心一点，很容易就安装好了。下面就直接说说在学习hadoop中linux系统一些基本的配置。</p>
+<h2 id="关闭linux防火墙"><a href="#关闭linux防火墙" class="headerlink" title="关闭linux防火墙"></a>关闭linux防火墙</h2><h4 id="禁用系统默认防火墙"><a href="#禁用系统默认防火墙" class="headerlink" title="禁用系统默认防火墙"></a>禁用系统默认防火墙</h4><p>因为我电脑安装的是centos7，而这个版本默认的防火墙是firewall。首先我们要做的是禁止掉centos7的默认防火墙<br>1、systemctl stop firewalld.service   停止firewall。<br>2、systemctl disable firewalld.service   禁止firewall开机启动。
+        
+          <p class="article-more-link">
+            <a href="/2016/09/18/Hadoop学习-一-Linux环境配置/#main">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+	  
+	    <a data-url="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/" data-id="cj43trtvs00015kkysjfa2w95" class="article-share-link">分享</a>
+	  
+      
+        <a href="http://yoursite.com/2016/09/18/Hadoop学习-一-Linux环境配置/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/18/Hadoop学习-一-Linux环境配置/">评论</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/">hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-github上传项目" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -128,7 +177,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="cizxibm59000nt8kydp75m00u" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/12/github上传项目/" data-id="cj43trtwa000j5kky07azp1ew" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/12/github上传项目/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/12/github上传项目/">评论</a>
@@ -176,7 +225,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/09/nexus搭建本地私服/" data-id="cizxibm5e000rt8kyqqlkm5y7" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/09/nexus搭建本地私服/" data-id="cj43trtx400165kkynle5c0xi" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/09/nexus搭建本地私服/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/09/nexus搭建本地私服/">评论</a>
@@ -225,7 +274,7 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/09/02/JAVA中Excel的操作/" data-id="cizxibm4n0009t8kytr9j1yf9" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/09/02/JAVA中Excel的操作/" data-id="cj43trtwk000t5kkyspzdw5d8" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/09/02/JAVA中Excel的操作/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/09/02/JAVA中Excel的操作/">评论</a>
@@ -273,61 +322,13 @@
     </div>
     <footer class="article-footer">
 	  
-	    <a data-url="http://yoursite.com/2016/05/30/linux常用命令/" data-id="cizxibm5j000zt8kyk4ulshhk" class="article-share-link">分享</a>
+	    <a data-url="http://yoursite.com/2016/05/30/linux常用命令/" data-id="cj43trtwz00125kkyqvjnsovx" class="article-share-link">分享</a>
 	  
       
         <a href="http://yoursite.com/2016/05/30/linux常用命令/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/05/30/linux常用命令/">评论</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-easyui-列统计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/30/easyui-列统计/">easyui-列统计</a>
-    </h1>
-  
-
-      </header>
-    
-  <div class="article-meta">
-    <a href="/2016/05/30/easyui-列统计/" class="article-date">
-  <time datetime="2016-05-30T08:03:10.000Z" itemprop="datePublished">2016-5-30 周一  16:03</time>
-</a>
-    
-  </div>
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>easyui一些入门的东西，这里就不介绍了，百度一些，有很多，下载个API什么都能搞定。下面就easyui一个小功能的扩展谈一谈<br>有时候我们在做项目的过程中也许会针对那些数字的列进行统计，而且这样的情况出现还是比较的频繁的，当然啦，我们如果通过后台<br>的计算或者前台计算也可以实现这个功能，但是既然我们采用了easyui这个前端框架，那我们有什么好的办法没呢！废话不多说，直接贴<br>代码
-        
-          <p class="article-more-link">
-            <a href="/2016/05/30/easyui-列统计/#main">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-	  
-	    <a data-url="http://yoursite.com/2016/05/30/easyui-列统计/" data-id="cizxibm58000lt8kygmdsksnm" class="article-share-link">分享</a>
-	  
-      
-        <a href="http://yoursite.com/2016/05/30/easyui-列统计/#ds-thread" class="ds-thread-count article-comment-link" data-thread-key="2016/05/30/easyui-列统计/">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
 
     </footer>
   </div>
@@ -371,6 +372,10 @@
       <ul>
         
           <li>
+            <a href="/2017/06/19/java程序导致CPU爆满分析/">java程序导致CPU爆满分析</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/25/Hadoop学习-五-MapReduce架构原理/">Hadoop学习(五)-MapReduce架构原理</a>
           </li>
         
@@ -406,10 +411,6 @@
             <a href="/2016/05/30/linux常用命令/">linux常用命令</a>
           </li>
         
-          <li>
-            <a href="/2016/05/30/easyui-列统计/">easyui-列统计</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -419,7 +420,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签 ● Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpc/">rpc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dump/">dump</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rpc/">rpc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/">tool</a></li></ul>
     </div>
   </div>
 
@@ -429,7 +430,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云 ● Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/hadoop/" style="font-size: 18.5px; color: #7f3198">hadoop</a> <a href="/tags/java/" style="font-size: 20px; color: #800080">java</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 15.5px; color: #7e92c7">maven</a> <a href="/tags/rpc/" style="font-size: 14px; color: #7dc3de">rpc</a> <a href="/tags/tool/" style="font-size: 17px; color: #7f62af">tool</a>
+      <a href="/tags/dump/" style="font-size: 14px; color: #7dc3de">dump</a> <a href="/tags/hadoop/" style="font-size: 18.5px; color: #7f3198">hadoop</a> <a href="/tags/java/" style="font-size: 20px; color: #800080">java</a> <a href="/tags/linux/" style="font-size: 14px; color: #7dc3de">linux</a> <a href="/tags/maven/" style="font-size: 15.5px; color: #7e92c7">maven</a> <a href="/tags/rpc/" style="font-size: 14px; color: #7dc3de">rpc</a> <a href="/tags/tool/" style="font-size: 17px; color: #7f62af">tool</a>
     </div>
   </div>
 
